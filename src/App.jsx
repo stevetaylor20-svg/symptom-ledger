@@ -336,12 +336,12 @@ export default function App() {
         .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
       `}</style>
 
-      <div className="max-w-3xl mx-auto px-6 py-16 body-font">
+      <div className="max-w-4xl mx-auto px-6 py-16 body-font">
         {/* Header */}
         <div className="mb-12">
         
           <h1 className="display text-5xl mb-3" style={{ color: PALETTE.bone }}>
-            Tic-borne Illness Herbal Calculator
+            Tick-borne Illness Herbal Calculator
           </h1>
           <p className="text-sm leading-relaxed max-w-xl" style={{ color: PALETTE.mutedBone }}>
             Select the symptoms present, and optionally a confirmed diagnosis. Each remedy
