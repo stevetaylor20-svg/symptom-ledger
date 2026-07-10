@@ -1,11 +1,19 @@
 // =============================================================================
 // weights.js
-// Regenerated from: "Lymeherbs — A Practical Guide" (herb/supplement summary)
-//                    "Lymeherbs — Planner ENG" (symptom/infection worksheets)
-// Sources cited inline as [Guide] or [Planner] where a specific claim/dose is
-// pulled from that document. Values not directly stated in the source PDFs
-// (e.g. weights for symptom pairs the guide only implies) are estimated and
-// marked "est." — review before clinical use. This is not medical advice.
+// Regenerated from:
+//   "Lymeherbs — A Practical Guide" (herb/supplement summary)          [Guide]
+//   "Lymeherbs — Planner ENG" (symptom/infection worksheets)          [Planner]
+//   "Lymeherbs — Lyme Disease Protocol" (step-by-step Borrelia)  [Lyme (Borrelia) Protocol]
+//   "Lymeherbs — Babesia Protocol" (step-by-step)                [Babesia Protocol]
+//   "Lymeherbs — Bartonella Protocol" (step-by-step)              [Bartonella Protocol]
+// Sources cited inline with the bracketed tags above where a specific
+// claim/dose is pulled from that document. Values not directly stated in the
+// source PDFs (e.g. weights for symptom pairs the guide only implies) are
+// estimated and marked "est." — review before clinical use. This is not
+// medical advice.
+//
+// GENERAL_CAUTIONS below holds blanket rules stated across every protocol
+// document rather than tied to one remedy or illness — check those too.
 // =============================================================================
 
 // -----------------------------------------------------------------------------
@@ -105,6 +113,7 @@ export const WEIGHT_MATRIX = {
     "Brain fog": 1,
     "Fatigue": 1,
     "Numbness / Neuropathy": 3, // [Guide] "highly effective against persistent muscle tremors... internal buzzing... electric currents"
+    "Headache": -1, // [Babesia Protocol / Bartonella Protocol] "when you feel a headache, reduce the dose or discontinue this herb"
   },
   "Cryptolepis": {
     "Night sweats": 2,
@@ -126,6 +135,7 @@ export const WEIGHT_MATRIX = {
     "Brain fog": 1,
     "Fatigue": 1,
     "Insomnia": -1,
+    "Cardiac issues": -1, // [Lyme (Borrelia) Protocol] "Exercise caution in taking this herb if you have low blood pressure"
   },
   "Bidens Pilosa": {
     "Body tremors": 1,
@@ -140,6 +150,7 @@ export const WEIGHT_MATRIX = {
     "Fatigue": -1,
     "Insomnia": -1,
     "Headache": 1,
+    "Cardiac issues": -1, // added so the existing CONTRAINDICATIONS dampen rule below actually has a weight to act on
   },
   "Allicin": {
     "Fatigue": 1,
@@ -242,6 +253,7 @@ export const WEIGHT_MATRIX = {
   "L-Arginine": {
     "Reduced libido": 2,
     "Fatigue": 1,
+    "Cardiac issues": -1, // added so the existing CONTRAINDICATIONS dampen rule below actually has a weight to act on
   },
   "Cordyceps": {
     "Fatigue": 2,
@@ -298,6 +310,7 @@ export const WEIGHT_MATRIX = {
     "Brain fog": 2, // [Guide] baseline neuroborreliosis herb alongside Tryptophan
     "Anxiety / Restlessness": 2,
     "Numbness / Neuropathy": 1,
+    "Cardiac issues": -1, // [Guide] "lowers blood pressure — hypotensive tendencies should monitor or swap"
   },
   "Tryptophan": {
     "Depression": 2,
@@ -549,7 +562,13 @@ export const CONTRAINDICATIONS = {
     "Cardiac issues": {
       "mode": "exclude",
       "note":
-        "Cardiac issues is treated as a hard contraindication for Sida Acuta in this sample data, so it is not offered at all when that symptom is selected — regardless of how strongly other symptoms point toward it.",
+        "Cardiac issues is treated as a hard contraindication for Sida Acuta, so it is not offered at all when that symptom is selected — regardless of how strongly other symptoms point toward it. Confirmed across all three infection protocols: \"if you have heart problems, it is better to avoid using this herb.\" [Babesia Protocol, Bartonella Protocol]",
+    },
+    "Headache": {
+      "mode": "dampen",
+      "factor": 0.5,
+      "note":
+        "Adjust dose to individual tolerance — reduce the dose or discontinue this herb if a headache occurs. [Babesia Protocol, Bartonella Protocol]",
     },
   },
   "Artemisia": {
@@ -589,11 +608,27 @@ export const CONTRAINDICATIONS = {
         "Contraindicated in severe hypertension; prolonged uncycled use can itself raise blood pressure [Guide].",
     },
   },
+  "Cat's Claw": {
+    "Cardiac issues": {
+      "mode": "dampen",
+      "factor": 0.6,
+      "note":
+        "Exercise caution if you have low blood pressure. Also do not use with blood-thinning or immunosuppressive medications, and discontinue 10 days before surgery — not modeled here since those aren't tracked symptoms. [Lyme (Borrelia) Protocol]",
+    },
+  },
+  "Gou Teng": {
+    "Cardiac issues": {
+      "mode": "dampen",
+      "factor": 0.5,
+      "note":
+        "Lowers blood pressure — those with hypotensive tendencies should monitor status or swap for an alternative. [Guide]",
+    },
+  },
   "Stephania": {
     "Cardiac issues": {
       "mode": "exclude",
       "note":
-        "Completely contraindicated with AV heart block and must never be combined with anti-arrhythmic drugs or digoxin; ~50% of patients on calcium channel blockers have issues combining them with Stephania [Guide].",
+        "Completely contraindicated with AV heart block and must never be combined with anti-arrhythmic drugs or digoxin; ~50% of patients on calcium channel blockers have issues combining them with Stephania [Guide]. The Bartonella protocol adds beta-blockers and low blood pressure to this exclusion list. [Bartonella Protocol]",
     },
   },
   "Rhodiola Rosea": {
@@ -681,11 +716,17 @@ export const ILLNESS_REMEDY_WEIGHTS = {
     "Isatis": 2,
     "Red Root": 2,
     "Rhodiola Rosea": 2,
+    "Stephania": 1, // [Bartonella Protocol] "For eye problems, Stephania tincture and lutein will provide support"
+    "Gou Teng": 1, // [Bartonella Protocol] "Bartonella often attacks the nervous system... good to use Gou teng"
   },
 };
 
-// Illness-level hard contraindications — same exclude/dampen schema as
+// Illness-level hard/soft rules — same exclude/dampen schema as
 // CONTRAINDICATIONS above, but keyed by illness rather than symptom.
+// mode: "exclude" -> remedy is removed outright whenever this illness is
+//                     selected, regardless of symptom score.
+// mode: "dampen"   -> remedy stays ranked, but any score it earns while this
+//                     illness is selected is multiplied by `factor`.
 export const ILLNESS_CONTRAINDICATIONS = {
   "Lyme (Borrelia)": {
     "Astragalus": {
@@ -693,5 +734,99 @@ export const ILLNESS_CONTRAINDICATIONS = {
       "note":
         "Astragalus is contraindicated in late-stage chronic Lyme disease — it stimulates already-elevated Th1 immune pathways and can severely aggravate existing symptoms. Strictly indicated for pre-exposure, early localized, and early disseminated stages only. [Guide]",
     },
+    "Ashwagandha": {
+      "mode": "exclude",
+      "note":
+        "Must not be combined with antidepressant medications. [Lyme (Borrelia) Protocol]",
+    },
+    "Japanese Knotweed": {
+      "mode": "dampen",
+      "factor": 0.5,
+      "note":
+        "Do not use if taking blood-thinning medications; discontinue 10 days before surgery. Avoid with high estrogen levels. May cause temporary loss of taste in ~1% of users, resolving within a week of stopping. [Lyme (Borrelia) Protocol]",
+    },
+    "Cat's Claw": {
+      "mode": "dampen",
+      "factor": 0.5,
+      "note":
+        "Do not use with blood-thinning or immunosuppressive medications; discontinue 10 days before surgery. Use caution with low blood pressure. Deactivated by stomach acid blockers/antacids — if on these, substitute Ashwagandha or Cordyceps. [Lyme (Borrelia) Protocol]",
+    },
+    "Andrographis": {
+      "mode": "dampen",
+      "factor": 0.8,
+      "note":
+        "Can trigger a skin rash in some users; discontinue if this occurs (resolves within days). May be substituted with Cryptolepis or Banderol for a comparable effect. [Lyme (Borrelia) Protocol]",
+    },
+  },
+  "Babesia": {
+    "L-Arginine": {
+      "mode": "dampen",
+      "factor": 0.4,
+      "note":
+        "Do not include if you have an active viral infection, especially herpes — L-arginine will intensify viral symptoms. [Babesia Protocol]",
+    },
+  },
+  "Bartonella": {
+    "L-Arginine": {
+      "mode": "dampen",
+      "factor": 0.4,
+      "note":
+        "Should not be used with an active viral infection, especially herpes — will quickly intensify herpes symptoms and may reactivate it. [Bartonella Protocol]",
+    },
+    "Japanese Knotweed": {
+      "mode": "dampen",
+      "factor": 0.5,
+      "note":
+        "Do not use if taking blood-thinning medications; discontinue 10 days before surgery. Avoid with high estrogen levels. May cause temporary loss of taste in ~1% of users. [Bartonella Protocol]",
+    },
+    "Alchornea Cordifolia": {
+      "mode": "exclude",
+      "note":
+        "Should not be combined with antidepressant medications. [Bartonella Protocol]",
+    },
+    "Ashwagandha": {
+      "mode": "exclude",
+      "note":
+        "Should not be combined with antidepressant medications. [Bartonella Protocol]",
+    },
+    "Stephania": {
+      "mode": "exclude",
+      "note":
+        "Should not be used by people taking pharmaceutical calcium channel blockers, beta-blockers, digoxin, or antiarrhythmic medications, or by those with low blood pressure. [Bartonella Protocol]",
+    },
+    "Isatis": {
+      "mode": "dampen",
+      "factor": 0.8,
+      "note":
+        "Per Buhner, best used in 3-week-on / 1-week-off cycles rather than continuously — flagged as a dosing caution, not a hard exclusion. [Bartonella Protocol]",
+    },
   },
 };
+
+// -----------------------------------------------------------------------------
+// GENERAL_CAUTIONS — blanket rules stated identically across every protocol
+// document, not tied to a single remedy or illness. Surface these once in the
+// UI (e.g. a persistent notice) rather than trying to key them per remedy.
+// -----------------------------------------------------------------------------
+export const GENERAL_CAUTIONS = [
+  {
+    "id": "pregnancy-breastfeeding",
+    "note":
+      "All herbs across every protocol are contraindicated during pregnancy and breastfeeding. [Guide, Lyme (Borrelia) Protocol, Babesia Protocol, Bartonella Protocol]",
+  },
+  {
+    "id": "children",
+    "note":
+      "Use in children should always be consulted with a doctor first; if approved, Buhner's weight-based dosing guideline is adult dose × (child's weight in kg ÷ 80). [Lyme (Borrelia) Protocol]",
+  },
+  {
+    "id": "one-change-at-a-time",
+    "note":
+      "When adjusting doses to push past a therapy plateau, change one herb at a time rather than several together, so you can tell which change actually helped. [Lyme (Borrelia) Protocol]",
+  },
+  {
+    "id": "herx-reaction",
+    "note":
+      "A temporary worsening of symptoms (a Herxheimer reaction) can occur during bacterial die-off. Activated charcoal or zeolite can help; if using either, space them at least 30 minutes after and 4 hours before other protocol herbs/medications. [Lyme (Borrelia) Protocol]",
+  },
+];

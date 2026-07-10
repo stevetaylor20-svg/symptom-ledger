@@ -194,9 +194,7 @@ export default function App() {
         >
           <AlertTriangle size={16} style={{ color: PALETTE.rust, flexShrink: 0, marginTop: 2 }} />
           <span style={{ color: PALETTE.mutedBone }}>
-            All symptoms, remedies, weights, diagnoses and contraindications live in{" "}
-            <code className="mono">weights.js</code> as placeholder sample data. Replace it
-            with your own reviewed source before using this for anything real.
+            This is for educational purposes ONLY. Please speak to your healthcare professional before making any changes.
           </span>
         </div>
 
