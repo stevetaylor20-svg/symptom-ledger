@@ -340,7 +340,7 @@ export default function App() {
         {/* Header */}
         <div className="mb-12">
         
-          <h1 className="display text-5xl mb-3" style={{ color: PALETTE.bone }}>
+          <h1 className="display text-5xl mb-3" style={{ color: PALETTE.ink }}>
             Tick-borne Illness Herbal Calculator
           </h1>
           <p className="text-sm leading-relaxed max-w-xl" style={{ color: PALETTE.mutedBone }}>
@@ -388,7 +388,7 @@ export default function App() {
                 style={{
                   borderColor: active ? PALETTE.moss : "rgba(241,236,223,0.25)",
                   background: active ? PALETTE.moss : "transparent",
-                  color: active ? PALETTE.ink : PALETTE.bone,
+                  color: active ? PALETTE.ink : PALETTE.ink,
                 }}
               >
                 {symptom}
@@ -414,7 +414,7 @@ export default function App() {
                 style={{
                   borderColor: active ? PALETTE.bark : "rgba(241,236,223,0.25)",
                   background: active ? PALETTE.bark : "transparent",
-                  color: active ? PALETTE.ink : PALETTE.bone,
+                  color: active ? PALETTE.ink : PALETTE.ink,
                 }}
               >
                 {illness}
@@ -586,7 +586,7 @@ export default function App() {
                 >
                   <Ban size={16} style={{ color: PALETTE.rust, flexShrink: 0, marginTop: 2 }} />
                   <div>
-                    <div className="display text-lg mb-1" style={{ color: PALETTE.bone }}>
+                    <div className="display text-lg mb-1" style={{ color: PALETTE.ink }}>
                       {remedy}
                     </div>
                     <p className="text-xs leading-relaxed mb-1" style={{ color: PALETTE.mutedBone }}>
@@ -611,7 +611,7 @@ const PALETTE = {
   ink: "#16211C",
   bg: "#B9FB9C",
   bone: "#F1ECDF",
-  mutedBone: "#B9C2B6",
+  mutedBone: "#445041",
   moss: "#7C9473",
   mossDark: "#4E6647",
   rust: "#B5651D",
