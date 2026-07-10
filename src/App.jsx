@@ -315,6 +315,22 @@ export default function App() {
                   </span>
                 </div>
 
+                {REMEDY_INFO[remedy]?.description && (
+                  <p className="text-sm leading-relaxed mb-3" style={{ color: PALETTE.ink }}>
+                    {REMEDY_INFO[remedy].description}
+                  </p>
+                )}
+
+                {REMEDY_INFO[remedy]?.caution && (
+                  <div
+                    className="flex gap-2 items-start rounded p-3 mb-3 text-xs leading-relaxed"
+                    style={{ background: "rgba(181,101,29,0.10)", border: `1px solid rgba(181,101,29,0.4)` }}
+                  >
+                    <AlertTriangle size={13} style={{ color: PALETTE.rust, flexShrink: 0, marginTop: 2 }} />
+                    <span style={{ color: PALETTE.mossDark }}>{REMEDY_INFO[remedy].caution}</span>
+                  </div>
+                )}
+
                 <div className="flex flex-col gap-1 mb-3">
                   {entries.map(({ label, kind, weight, dampened }) => (
                     <div
