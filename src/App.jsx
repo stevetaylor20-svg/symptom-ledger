@@ -608,7 +608,8 @@ export default function App() {
 }
 
 const PALETTE = {
-  ink: "#16211C",
+  //ink: "#16211C",
+  ink: "#B9FB9C",
   bone: "#F1ECDF",
   mutedBone: "#B9C2B6",
   moss: "#7C9473",
