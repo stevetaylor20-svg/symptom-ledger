@@ -4,6 +4,7 @@ import {
   SYMPTOMS,
   REMEDIES,
   WEIGHT_MATRIX,
+  REMEDY_INFO,
   CONTRAINDICATIONS,
   DIAGNOSED_ILLNESSES,
   ILLNESS_INFO,
@@ -193,7 +194,9 @@ export default function App() {
         >
           <AlertTriangle size={16} style={{ color: PALETTE.rust, flexShrink: 0, marginTop: 2 }} />
           <span style={{ color: PALETTE.mutedBone }}>
-            This is for educational purposes only. Speak to your healthcare professional before making any changes to your regime.
+            All symptoms, remedies, weights, diagnoses and contraindications live in{" "}
+            <code className="mono">weights.js</code> as placeholder sample data. Replace it
+            with your own reviewed source before using this for anything real.
           </span>
         </div>
 
