@@ -325,7 +325,7 @@ export default function App() {
   const hasResults = included.length > 0 || excluded.length > 0;
 
   return (
-    <div style={{ background: PALETTE.ink, minHeight: "100vh", color: PALETTE.bone }}>
+    <div style={{ background: PALETTE.bg, minHeight: "100vh", color: PALETTE.bone }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
         .display { font-family: 'Fraunces', serif; }
@@ -608,8 +608,8 @@ export default function App() {
 }
 
 const PALETTE = {
-  //ink: "#16211C",
-  ink: "#B9FB9C",
+  ink: "#16211C",
+  bg: "#B9FB9C",
   bone: "#F1ECDF",
   mutedBone: "#B9C2B6",
   moss: "#7C9473",
