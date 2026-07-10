@@ -646,26 +646,51 @@ export const REMEDY_INFO = {
   "Sida Acuta": {
     "description":
       "A traditional herb used broadly for its calming, antimicrobial properties. Commonly reached for when neurological-type symptoms like tremors are present.",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Cryptolepis": {
     "description":
       "An African-origin herb often used for its broad antimicrobial action, particularly associated with addressing night sweats and general systemic support.",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Japanese Knotweed": {
     "description":
       "Contains resveratrol and is often used for joint support and circulatory benefits, alongside general anti-inflammatory use.",
     "caution":
       "Do not combine with blood-thinning medications; stop 10 days before surgery. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 5 ml x 3-6 daily", // [Planner]
+      "1:3": "0.75 - 3 ml x 3-6 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 2 ml x 3-6 daily", // [Planner]
+    },
   },
   "Cat's Claw": {
     "description":
       "A South American vine traditionally used for joint and immune support, with anti-inflammatory properties. In Lyme protocols it is also used to help maintain CD57+ T-cell counts.",
     "caution":
       "Contraindicated with blood thinners; stop 10 days before surgery; cannot be used with stomach acid blockers (PPIs), which prevent conversion to its active form. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 3 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 2 ml x 3 daily", // [Planner]
+    },
   },
   "Bidens Pilosa": {
     "description":
       "A flowering plant used traditionally for general immune and inflammatory support, often included in broader symptom-relief protocols.",
+    "tinctureDosage": {
+      "1:5": "7.5 ml x 3 daily", // [Planner]
+      "1:3": "4.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "3 ml x 3 daily", // [Planner]
+    },
   },
   "Artemisia": {
     "description":
@@ -686,16 +711,31 @@ export const REMEDY_INFO = {
       "A primary Buhner-protocol herb with clear anti-spirochete properties; crosses the blood-brain barrier and protects the heart muscle. [Guide]",
     "caution":
       "Can trigger allergic skin rashes in roughly 1% of users — start low and discontinue if a rash appears. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Chinese Skullcap": {
     "description":
       "An herb used traditionally for calming and anti-inflammatory effects, often associated with cognitive and sleep-related support.",
     "caution":
       "Can alter insulin/blood sugar levels (caution for type 1 diabetics) and may interact with blood-pressure-lowering medications. [Guide]",
+    "tinctureDosage": {
+      "1:5": "2.5 ml x 3 daily", // [Planner]
+      "1:3": "1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "1 ml x 3 daily", // [Planner]
+    },
   },
   "Houttuynia": {
     "description":
       "An herb used traditionally for antimicrobial and immune-supportive purposes, prominent in Bartonella and Mycoplasma protocols.",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3-6 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3-6 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3-6 daily", // [Planner]
+    },
   },
   "Cinnamon Clove & Oregano": {
     "description":
@@ -718,24 +758,44 @@ export const REMEDY_INFO = {
       "Red Sage / Dan Shen. A master modulator of the cytokine cascade; protects the Golgi apparatus of nerve cells and the lymphatic endothelium. Considered a core foundational herb across Borrelia, Babesia, Chlamydia, Ehrlichia and Rickettsia protocols. [Guide]",
     "caution":
       "In severe neurological cases, standard dose can safely be increased 2–3 fold per Buhner — do this only under guidance. [Guide]",
+    "tinctureDosage": {
+      "1:5": "2.5 ml x 3 daily", // [Planner]
+      "1:3": "1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "1 ml x 3 daily", // [Planner]
+    },
   },
   "Alchornea Cordifolia": {
     "description":
       "A systemic herb concentrating in the bloodstream; used against Babesia and Bartonella, also effective vs. Candida and resistant bacteria. Protects red blood cells. [Guide]",
     "caution":
       "High doses can sedate the CNS — should not be combined with large doses of antidepressants or sedatives. [Guide] Relevant if taking duloxetine or mirtazapine — flag for prescriber review.",
+    "tinctureDosage": {
+      "1:5": "1.25 ml x 3 daily", // [Planner]
+      "1:3": "0.75 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 ml x 3 daily", // [Planner]
+    },
   },
   "Ashwagandha": {
     "description":
       "Lowers IL-10 cytokine levels, shifts Th2 immune responses, and acts as a mood stabilizer and sleep aid across nearly every co-infection protocol. [Guide]",
     "caution":
       "Should never be combined with pharmaceutical sedatives or anti-anxiety medications. May cause mild digestive upset in rare cases. [Guide] Relevant if taking duloxetine or mirtazapine — flag for prescriber review.",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Licorice": {
     "description":
       "A powerful antiviral herb and exceptional synergist used in Babesia, Chlamydia, Ehrlichia and Yersinia protocols. Should be used in combination blends rather than as a standalone. [Guide]",
     "caution":
       "Completely contraindicated in hypertension, hypokalemia, hypernatremia, and low testosterone. Not for continuous use beyond 4–6 weeks. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Milk Thistle": {
     "description":
@@ -752,6 +812,11 @@ export const REMEDY_INFO = {
       "Increases vitality and blood flow, strengthens immune parameters, and supports libido and glucose regulation. [Guide]",
     "caution":
       "Lowers blood pressure (unlike Siberian Ginseng) — use caution if you have low blood pressure. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 ml x 3 daily", // [Planner]
+      "1:3": "0.75 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 ml x 3 daily", // [Planner]
+    },
   },
   "EGCG": {
     "description":
@@ -764,6 +829,11 @@ export const REMEDY_INFO = {
       "Addresses most primary cardiovascular symptoms — atherosclerosis, arrhythmias, congestive heart failure, hypertension. Central herb in Bartonella cardiac protocols. [Guide]",
     "caution":
       "Must be strictly avoided by individuals who already have pathologically low blood pressure. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "L-Arginine": {
     "description":
@@ -774,30 +844,55 @@ export const REMEDY_INFO = {
   "Cordyceps": {
     "description":
       "A medicinal mushroom and adaptogen; protects mitochondria, intelligently modulates immune activity, and is helpful for low libido and brain fog. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 3 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 2 ml x 3 daily", // [Planner]
+    },
   },
   "Isatis": {
     "description":
       "Used against Bartonella and Mycoplasma; a potent immune stimulant with anti-inflammatory action. [Guide]",
     "caution":
       "Never take for more than 3 consecutive weeks without a break — prolonged/high-dose use can overtax the kidneys. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Red Root": {
     "description":
       "A powerful stimulant and tonic for the lymphatic system; tones mucosal linings and lowers liver/spleen inflammation. [Guide]",
     "caution":
       "A potent blood coagulant — never combine with pharmaceutical coagulants or anticoagulants. [Guide]",
+    "tinctureDosage": {
+      "1:5": "2.5 - 5 ml x 3-4 daily", // [Planner]
+      "1:3": "1.5 - 3 ml x 3-4 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "1 - 2 ml x 3-4 daily", // [Planner]
+    },
   },
   "Rhodiola Rosea": {
     "description":
       "An adaptogen used heavily for adrenal fatigue, chronic exhaustion and focus deficits, with anti-depressive benefits and mitochondrial protection. [Guide]",
     "caution":
       "Some people experience jitters/over-stimulation — avoid taking close to bedtime until tolerance is confirmed. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3-4 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3-4 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3-4 daily", // [Planner]
+    },
   },
   "Astragalus": {
     "description":
       "An immunostimulating herb that upregulates interferon-gamma/IL-2 and raises CD4 counts; recommended for pre-exposure and early-stage Lyme. [Guide]",
     "caution":
       "Contraindicated in late-stage chronic Lyme disease — stimulates already elevated Th1 immune pathways and can severely aggravate existing symptoms. Strictly for pre-exposure, early localized, and early disseminated stages only. [Guide] See ILLNESS_CONTRAINDICATIONS below.",
+    "tinctureDosage": {
+      "1:5": "2.5 - 5 ml x 3-4 daily", // [Planner]
+      "1:3": "1.5 - 3 ml x 3-4 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "1.0 - 2 ml x 3-4 daily", // [Planner]
+    },
   },
   "Cleavers": {
     "description":
@@ -820,18 +915,33 @@ export const REMEDY_INFO = {
   "Motherwort": {
     "description":
       "Recommended for migraines and depression due to reliable sedative properties; balances CNS and vegetative nervous systems and stabilizes cardiac rhythm during emotional stress. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.5 - 1.5 ml x 3 daily (lower bound: raw 0.6, rounded to match source's rounding pattern)", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Stephania": {
     "description":
       "Primary Buhner herb for ocular Lyme and Bell's Palsy; reduces neuro-inflammation and calms autoimmune joint flare-ups. Acts as a calcium channel blocker. [Guide]",
     "caution":
       "Roughly half of patients on pharmaceutical calcium channel blockers experience problems combining them with Stephania — consult a physician. Completely contraindicated with AV heart block and must never be combined with anti-arrhythmic drugs or digoxin. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Gou Teng": {
     "description":
       "Baseline neuroborreliosis herb (with Tryptophan) per Buhner's core recommendations; addresses neuro-inflammation with anti-epileptic properties. [Guide]",
     "caution":
       "Lowers blood pressure — those with hypotensive tendencies should monitor status or swap for an alternative. [Guide]",
+    "tinctureDosage": {
+      "1:5": "2.5 - 5 ml x 3-6 daily", // [Planner]
+      "1:3": "1.5 - 3 ml x 3-6 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "1 - 2 ml x 3-6 daily", // [Planner]
+    },
   },
   "Tryptophan": {
     "description":
@@ -867,10 +977,17 @@ export const REMEDY_INFO = {
   "Lion's Mane": {
     "description":
       "A medicinal mushroom that protects, develops, and regenerates the nervous system; stimulates Nerve Growth Factor (NGF) and accelerates myelination. Buhner recommends it for milder/chronic neurological maintenance. Also excellent for GI tract disorders. [Guide]",
+    "tinctureDosage":
+      "1:5 dosage not given in source [Planner]. 1:2 = 1.25 - 2.5 ml x 3-6 daily. 1:3 cannot be reliably calculated without the 1:5 baseline. [Planner]",
   },
   "Chinese Senega": {
     "description":
       "Stimulates Nerve Growth Factor (NGF), supporting neuronal proliferation, survival, and myelination. Buhner prefers this over Lion's Mane for acute, severe neurological flare-ups. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.5 ml x 3 daily", // [Planner]
+      "1:3": "~0.9 ml x 3 daily (calculated; source rounds the 1:2 figure down to 0.5)", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 ml x 3 daily", // [Planner]
+    },
   },
   "BDNF Essentials": {
     "description":
@@ -879,6 +996,11 @@ export const REMEDY_INFO = {
   "Kudzu": {
     "description":
       "Features the compound puerarin; anti-arrhythmic, circulatory-supporting, and anti-diabetic. Calms neuro-inflammation and mitigates a feeling of \"pressure\" in the brain or neurogenic pain. Used alongside Stephania for Bell's Palsy. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Vitamin B12": {
     "description":
@@ -905,6 +1027,11 @@ export const REMEDY_INFO = {
       "Contains coumarin compounds that dilate blood vessels and improve blood flow; used to help lower Lyme neurotoxin levels (e.g. quinolinic acid) and, combined with Salvia miltiorrhiza, for neurogenic pain. [Guide]",
     "caution":
       "May occasionally cause mild diarrhea. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Mucuna Pruriens": {
     "description":
@@ -929,6 +1056,11 @@ export const REMEDY_INFO = {
       "A premier adaptogen distinct from Korean Ginseng; rapidly increases physical energy and stamina, balances the HPA axis, and stimulates serotonin/dopamine release. First-line recommendation (as a 2:1 tincture) for chronic fatigue, and useful for severe exhaustion-driven depression. [Guide]",
     "caution":
       "Unlike Korean Ginseng, raises rather than lowers blood pressure — those with high blood pressure must monitor status closely. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "ATP Fuel": {
     "description":
@@ -1015,6 +1147,11 @@ export const REMEDY_INFO = {
   "Pine Pollen": {
     "description":
       "Dense in amino acids, vitamins, and trace minerals; naturally contains bio-identical androgens (testosterone, DHEA). Low DHEA manifests as fatigue, low immunity, low libido, depression, and cognitive decline. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Zinc": {
     "description":
@@ -1053,12 +1190,22 @@ export const REMEDY_INFO = {
       "A supportive agent for sporadic viral infections with intermittent (hot/cold) fevers — used primarily to reduce fevers, not as a core baseline therapy. [Guide]",
     "caution":
       "Can induce vomiting in excessive quantities — nausea while drinking the tea is a clear sign the dose is too high and must be reduced immediately. [Guide]",
+    "tinctureDosage": {
+      "1:5": "1.25 - 2.5 ml x 3 daily", // [Planner]
+      "1:3": "0.75 - 1.5 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
+    },
   },
   "Echinacea Angustifolia": {
     "description":
       "Distinct from common Echinacea purpurea; protects and repairs collagen structures, is a powerful pain reliever with antimicrobial/antiviral action, is superb for throat infections and tonsillitis, and (diluted, topically) accelerates wound healing. [Guide]",
     "caution":
       "Use caution with co-existing autoimmune conditions, as it is a potent immune stimulant. [Guide]",
+    "tinctureDosage": {
+      "1:5": "5 ml x 3 daily", // [Planner]
+      "1:3": "3 ml x 3 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "2 ml x 3 daily", // [Planner]
+    },
   },
   "Bromelain": {
     "description":
@@ -1071,6 +1218,11 @@ export const REMEDY_INFO = {
   "Barberry": {
     "description":
       "Contains the potent alkaloid berberine, with an exceptionally wide antimicrobial spectrum (Chlamydia, E. coli, Streptococcus, Staphylococcus) and strong action against Candida yeasts; whole-plant extract is generally preferred over isolated berberine. [Guide]",
+    "tinctureDosage": {
+      "1:5": "2.5 ml x 3-6 daily", // [Planner]
+      "1:3": "1.5 ml x 3-6 daily", // est. — calculated as 1:5 dose x 0.6 (dose scales with tincture ratio denominator; not stated in source)
+      "1:2": "1 ml x 3-6 daily", // [Planner]
+    },
   },
   "Acetyl-L-Carnitine (ALCAR)": {
     "description":
