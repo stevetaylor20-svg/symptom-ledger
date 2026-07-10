@@ -31,7 +31,7 @@ export const SYMPTOMS = [
   "Fatigue",                   // Planner: "Chronic fatigue"
   "Insomnia",                  // Planner: "Sleep problems"
   "Headache",                  // Planner: "Headaches"
-  "Anxiety 		/ Restlessness",    // Planner: "Depression/anxiety/hysteria" (anxiety half)
+  "Anxiety / Restlessness",    // Planner: "Depression/anxiety/hysteria" (anxiety half)
   "Depression",                // Planner: "Depression/anxiety/hysteria" (depression half)
   "Numbness / Neuropathy",     // Planner: "Neuropathy" / "Muscle tremors, limb numbness"
   "Reduced libido",            // Planner: "Reduced libido"
@@ -41,12 +41,27 @@ export const SYMPTOMS = [
   "Herx reaction",             // Guide: "Herx reaction and detoxification" — die-off flare, not a baseline symptom but tracked so remedies with Herx-mitigation properties surface
   // --- new: diagnostic/neurological groupings from the Guide's "Proposals
   // for Selecting Herb Sets" that aren't captured by the general symptoms
-  // above — see matching entries in HERB_SETS for full herb sequencing ---
+  // above ---
   "Neurological", // Guide: "Neuroborelioza – Basic Herbs for Neurological Symptoms"
-  "Demylination",     // Guide: "Neuronal Demyelination"
+  "Demyelination",     // Guide: "Neuronal Demyelination"
   "Bell's Palsy",               // Guide: "Bell's Palsy"
   "Neurogenic pain",            // Guide: "Neurogenic Pain"
   "Bacterial neurotoxin burden", // Guide: "Removal of Bacterial Neurotoxins"
+  // --- new: symptoms surfaced from individual herb descriptions in the
+  // Guide's "Alphabetical Summary of Herbs & Supplements" (not part of the
+  // "Proposals for Selecting Herb Sets" section, but named directly in a
+  // herb's own writeup) ---
+  "Circulatory issues",        // Guide: Gotu Kola "supporting the entire circulatory system"; distinct from "Cardiac issues" (heart-specific)
+  "Respiratory issues",        // Guide: Angelica sinensis "recommended for... respiratory issues"; Chinese Senega "respiratory tract inflammations, pneumonia, and asthma"
+  "Urinary tract issues",      // Guide: Bidens pilosa "highly effective for recurrent urinary tract infections"
+  "Skin issues",                // Guide: Sarsaparilla "resolving Lyme-related skin issues"
+  "Tinnitus / Hearing issues", // Guide: Taurine "can also significantly improve or eliminate tinnitus... and hearing decline"
+  "Fever",                      // Guide: Boneset "used primarily to reduce fevers"
+  "Sore throat",                 // Guide: Echinacea angustifolia "superb for throat infections and tonsillitis"
+  "Wound healing",              // Guide: Bromelain "accelerating wound healing"; Echinacea angustifolia (topical)
+  "Candida / Fungal overgrowth", // Guide: Olive Leaf "a staple for systemic candidiasis"
+  "Anemia",                      // Guide: Folic Acid "deficiencies lead to anemia"
+  "Motor coordination / balance", // Guide: Acetyl-L-Carnitine (ALCAR) "improve cognitive processing, mood, motor coordination"
 ];
 
 // -----------------------------------------------------------------------------
@@ -140,6 +155,20 @@ export const REMEDIES = [
   "Pine Pollen",
   "Zinc",
   "Stinging Nettle",
+  // --- new: herbs from the Guide's "Alphabetical Summary of Herbs &
+  // Supplements" that name a symptom not covered by any existing remedy
+  // [Guide] ---
+  "Goldenseal",
+  "Celery Seeds",
+  "Sarsaparilla",
+  "Lutein / Zeaxanthin",
+  "Boneset",
+  "Echinacea Angustifolia",
+  "Bromelain",
+  "Olive Leaf",
+  "Barberry",
+  "Acetyl-L-Carnitine (ALCAR)",
+  "Chlorophyll",
 ];
 
 // -----------------------------------------------------------------------------
@@ -178,6 +207,8 @@ export const WEIGHT_MATRIX = {
     "Headache": 1,
     "Cardiac issues": 2, // [Guide] "protects the heart muscle... mitigates cardiac symptoms like palpitations, chest pain, and shortness of breath"
     "Numbness / Neuropathy": 1, // [Planner] Muscle tremors/numbness list
+    "Circulatory issues": 3, // [Guide] "powerfully stimulates microcirculation, specifically driving blood flow into the joints, heart, eyes, brain, and skin"
+    "Skin issues": 2, // [Guide] "eases joint and skin manifestations"
   },
   "Cat's Claw": {
     "Joint pain": 3,
@@ -191,6 +222,8 @@ export const WEIGHT_MATRIX = {
     "Night sweats": 1,
     "Joint pain": 1,
     "Fatigue": 2,
+    "Urinary tract issues": 3, // [Guide] "highly effective for recurrent urinary tract infections or systemic mucosal inflammation"
+    "Respiratory issues": 2, // [Guide] "also used for lung infections"
   },
   "Artemisia": {
     "Heart palpitations": -1,
@@ -299,6 +332,7 @@ export const WEIGHT_MATRIX = {
     "Fatigue": 1,
     "Cardiac issues": 1,
     "Brain fog": 1,
+    "Circulatory issues": 1, // [Guide] "helps prevent atherosclerosis, lowers blood pressure, reduces cardiovascular risks"
   },
   "Hawthorn": {
     "Cardiac issues": 3, // [Guide] core cardiac herb
@@ -332,17 +366,20 @@ export const WEIGHT_MATRIX = {
   },
   "Cleavers": {
     "Edema / Swelling": 3, // [Guide] core lymph/edema herb
+    "Urinary tract issues": 2, // [Guide] "diuretic benefits for urinary tract inflammation"
   },
   "Gotu Kola": {
     "Brain fog": 3, // [Guide] "Excellent herbs to begin with include Gotu Kola or Ginkgo biloba"
     "Edema / Swelling": 1,
     "Depression": 1,
+    "Circulatory issues": 3, // [Guide] "maintains structural elasticity in venous walls and capillaries while supporting the entire circulatory system"
   },
   "Ginkgo Biloba": {
     "Brain fog": 3, // [Guide] "Excellent herbs to begin with include Gotu Kola or Ginkgo biloba"
     "Numbness / Neuropathy": 3, // [Guide] "the ideal choice" for numbness driven by peripheral circulatory restriction/cold extremities
     "Headache": 1,
     "Cardiac issues": 1,
+    "Circulatory issues": 3, // [Guide] "enhances structural blood vessel function... improving blood flow to the brain and skeletal muscles"
   },
   "Teasel Root": {
     "Joint pain": 3, // [Guide] "begin by introducing Wild Teasel tincture" — Joint Problems baseline herb
@@ -384,6 +421,7 @@ export const WEIGHT_MATRIX = {
     "Herx reaction": 2, // [Guide] Herx/detox set
     "Neurological": 1, // [Guide] baseline support alongside Gou teng/Tryptophan
     "Bacterial neurotoxin burden": 1, // [Guide] neurotoxin removal set
+    "Respiratory issues": 2, // [Guide] "powerful mucolytic properties — liquefying and reducing mucus viscosity to clear the respiratory tract"
   },
   "Melatonin": {
     "Insomnia": 3,
@@ -406,22 +444,24 @@ export const WEIGHT_MATRIX = {
   "Lion's Mane": {
     "Brain fog": 2, // [Guide] "resolves brain fog while repairing neurological structures" — dual-purpose with Chronic Fatigue/Brain Fog set
     "Gastrointestinal problems": 1,
-    "Demylination": 3, // [Guide] "Buhner strongly recommends Lion's Mane... to resolve cognitive defects and rebuild damaged neuronal networks" — milder/chronic maintenance; start with Chinese Senega, transition to Lion's Mane
+    "Demyelination": 3, // [Guide] "Buhner strongly recommends Lion's Mane... to resolve cognitive defects and rebuild damaged neuronal networks" — milder/chronic maintenance; start with Chinese Senega, transition to Lion's Mane
   },
   "Chinese Senega": {
     "Brain fog": 1,
     "Depression": 1,
-    "Demylination": 3, // [Guide] preferred for acute, severe flare-ups
+    "Demyelination": 3, // [Guide] preferred for acute, severe flare-ups
+    "Respiratory issues": 2, // [Guide] "applied in respiratory tract inflammations, pneumonia, and asthma"
   },
   "BDNF Essentials": {
     "Brain fog": 1,
-    "Demylination": 2, // [Guide] fallback if Chinese Senega/Lion's Mane don't deliver noticeable improvement
+    "Demyelination": 2, // [Guide] fallback if Chinese Senega/Lion's Mane don't deliver noticeable improvement
   },
   "Kudzu": {
     "Headache": 2, // [Guide] "pressure" in the head / neurogenic pain
     "Numbness / Neuropathy": 1,
     "Neurogenic pain": 3, // [Guide] first-line pairing with Greater Celandine
     "Bell's Palsy": 2, // [Guide] "amplified by adding Kudzu" alongside Stephania
+    "Circulatory issues": 2, // [Guide] puerarin is "anti-arrhythmic, circulatory-supporting, and anti-diabetic"
   },
   "Vitamin B12": {
     "Numbness / Neuropathy": 2, // [Guide] Muscle Twitching/Numbness baseline set, alongside Magnesium and Folic Acid
@@ -448,6 +488,7 @@ export const WEIGHT_MATRIX = {
     "Gastrointestinal problems": -1, // [Guide] "may occasionally cause mild diarrhea"
     "Neurogenic pain": 2, // [Guide] Buhner combination with Salvia miltiorrhiza
     "Bacterial neurotoxin burden": 3, // [Guide] one of three interchangeable options for neurotoxin removal
+    "Respiratory issues": 1, // [Guide] "also recommended for nervous tension, insomnia, and respiratory issues"
   },
   "Mucuna Pruriens": {
     "Body tremors": 2, // [Guide] "natural L-dopa precursor" for tremors, per Buhner
@@ -504,6 +545,7 @@ export const WEIGHT_MATRIX = {
     "Cardiac issues": 2, // [Guide] Cardiac Problems set — most abundant amino acid in the heart, mandatory for proper cardiac muscle function
     "Body tremors": 1,
     "Brain fog": 1, // [Guide] Brain Fog baseline set
+    "Tinnitus / Hearing issues": 3, // [Guide] "can also significantly improve or eliminate tinnitus... and hearing decline by restoring correct calcium ion flux within auditory cells"
   },
   "Collagen": {
     "Joint pain": 2, // [Guide] Joint Problems baseline set
@@ -526,6 +568,7 @@ export const WEIGHT_MATRIX = {
   "Folic Acid": {
     "Numbness / Neuropathy": 2, // [Guide] Muscle Twitching/Numbness baseline set, alongside Magnesium and Vitamin B12
     "Depression": 1,
+    "Anemia": 2, // [Guide] "required for hematopoiesis; deficiencies lead to anemia"
   },
   "REM Repair": {
     "Insomnia": 3, // [Guide] GABA + Melissa + Valerian + B6 blend (Nutrined) — one of the Guide's three Sleep Problems paths
@@ -543,6 +586,55 @@ export const WEIGHT_MATRIX = {
   },
   "Stinging Nettle": {
     "Edema / Swelling": 2, // [Guide] "drinking a daily infusion... acts as a safe diuretic"
+  },
+
+  // --- new: remedies surfaced from the Guide's "Alphabetical Summary of
+  // Herbs & Supplements" that named a symptom not covered by any existing
+  // remedy [Guide] ---
+  "Goldenseal": {
+    "Respiratory issues": 2, // [Guide] "helpful for upper respiratory catarrh due to its expectorant properties"
+    "Candida / Fungal overgrowth": 2, // [Guide] "effectively eliminates Candida overgrowth without damaging beneficial gut flora"
+  },
+  "Celery Seeds": {
+    "Urinary tract issues": 2, // [Guide] "acts as an effective, safe diuretic to clear acidic urinary tract sediment"
+    "Joint pain": 1, // [Guide] "minimizes inflammation of the joint capsule... easing arthritis symptoms"
+  },
+  "Sarsaparilla": {
+    "Skin issues": 3, // [Guide] "resolving Lyme-related skin issues"
+    "Herx reaction": 3, // [Guide] "powerfully diminishes the severity of Herxheimer reactions"
+    "Joint pain": 1, // [Guide] "calms inflammatory joint flare-ups"
+    "Brain fog": 1, // [Guide] "crosses the blood-brain barrier to reduce cognitive deficits"
+  },
+  "Lutein / Zeaxanthin": {
+    "Eye problems": 3, // [Guide] "safeguard ocular tissue from harmful UV radiation... preserving sharp central vision"
+    "Skin issues": 1, // [Guide] "improving cutaneous elasticity, hydration, sebum regulation"
+  },
+  "Boneset": {
+    "Fever": 3, // [Guide] "used primarily to reduce fevers"
+  },
+  "Echinacea Angustifolia": {
+    "Sore throat": 3, // [Guide] "superb for throat infections and tonsillitis"
+    "Wound healing": 2, // [Guide] topical tincture "can be used topically to accelerate wound healing"
+  },
+  "Bromelain": {
+    "Joint pain": 2, // [Guide] "excellent daily supplement for individuals suffering from acute or chronic joint pain, swelling"
+    "Wound healing": 2, // [Guide] "accelerating wound healing"
+  },
+  "Olive Leaf": {
+    "Candida / Fungal overgrowth": 3, // [Guide] "a staple for systemic candidiasis"
+    "Circulatory issues": 2, // [Guide] "enhances arterial elasticity to improve blood flow and lower high blood pressure"
+  },
+  "Barberry": {
+    "Candida / Fungal overgrowth": 2, // [Guide] "demonstrates strong action against Candida yeasts"
+  },
+  "Acetyl-L-Carnitine (ALCAR)": {
+    "Motor coordination / balance": 3, // [Guide] "improve cognitive processing, mood, motor coordination, and stress resilience"
+    "Brain fog": 2, // [Guide] "strong neuroprotective mechanisms, shielding brain cells from degradation"
+    "Fatigue": 1, // [Guide] "transporting long-chain fatty acids straight into mitochondria for energy conversion"
+  },
+  "Chlorophyll": {
+    "Circulatory issues": 1, // [Guide] "stimulates healthy blood production and supports the cardiovascular system"
+    "Gastrointestinal problems": 1, // [Guide] "helps rebuild damaged gut flora to improve digestion"
   },
 };
 
@@ -933,6 +1025,62 @@ export const REMEDY_INFO = {
       "Safe diuretic that reduces edema and removes stagnant fluid; also displays anti-inflammatory action that benefits arthritis and explicitly inhibits elastase (which degrades elastin, cartilage, and collagen). [Guide]",
     "caution":
       "Contraindicated for women with reproductive conditions (uterine cancers, fibroids, cysts, abnormal bleeding), chronic kidney disease, major surgical windows, or poorly managed diabetes. [Guide]",
+  },
+
+  // --- new: remedies surfaced from the Guide's "Alphabetical Summary of
+  // Herbs & Supplements" that named a symptom not covered by any existing
+  // remedy [Guide] ---
+  "Goldenseal": {
+    "description":
+      "A rich natural source of berberine and one of the finest natural broad-spectrum antibiotics; healing/toning effect on mucous membranes, effective against Chlamydia pneumoniae, eliminates Candida overgrowth without damaging beneficial gut flora, and helps upper respiratory catarrh via its expectorant properties. [Guide]",
+    "caution":
+      "Contraindicated in high blood pressure, hypoglycemia, enzymatic insufficiency, and systemic autoimmune conditions such as Multiple Sclerosis or Lupus. [Guide]",
+  },
+  "Celery Seeds": {
+    "description":
+      "Rich in apigenin, a natural analgesic and uric-acid reducer; minimizes joint-capsule inflammation and neutralizes inflammatory metabolic acids, and acts as a safe diuretic to clear acidic urinary tract sediment. [Guide]",
+  },
+  "Sarsaparilla": {
+    "description":
+      "Binds bacterial endotoxins from dying spirochetes/co-infections, powerfully diminishing Herxheimer reactions; purifies the blood, calms inflammatory joint flare-ups, crosses the blood-brain barrier to reduce cognitive deficits, and resolves Lyme-related skin issues. [Guide]",
+  },
+  "Lutein / Zeaxanthin": {
+    "description":
+      "Accumulates in the eye lens and retina, filtering high-energy blue light and protecting the macula from UV/free-radical damage; also accumulates in skin, improving elasticity, hydration, and sebum regulation, with added cardiovascular support. [Guide]",
+  },
+  "Boneset": {
+    "description":
+      "A supportive agent for sporadic viral infections with intermittent (hot/cold) fevers — used primarily to reduce fevers, not as a core baseline therapy. [Guide]",
+    "caution":
+      "Can induce vomiting in excessive quantities — nausea while drinking the tea is a clear sign the dose is too high and must be reduced immediately. [Guide]",
+  },
+  "Echinacea Angustifolia": {
+    "description":
+      "Distinct from common Echinacea purpurea; protects and repairs collagen structures, is a powerful pain reliever with antimicrobial/antiviral action, is superb for throat infections and tonsillitis, and (diluted, topically) accelerates wound healing. [Guide]",
+    "caution":
+      "Use caution with co-existing autoimmune conditions, as it is a potent immune stimulant. [Guide]",
+  },
+  "Bromelain": {
+    "description":
+      "A proteolytic enzyme from pineapple that suppresses pain/inflammation compounds while stimulating anti-inflammatory prostaglandins — an excellent daily supplement for acute or chronic joint pain, swelling, and muscle trauma, and accelerates wound healing. [Guide]",
+  },
+  "Olive Leaf": {
+    "description":
+      "Exceptional antifungal properties, particularly against Candida albicans, making it a staple for systemic candidiasis; also delivers antibacterial/antiparasitic/antiviral action, regulates blood sugar, and enhances arterial elasticity to improve blood flow and lower blood pressure. [Guide]",
+  },
+  "Barberry": {
+    "description":
+      "Contains the potent alkaloid berberine, with an exceptionally wide antimicrobial spectrum (Chlamydia, E. coli, Streptococcus, Staphylococcus) and strong action against Candida yeasts; whole-plant extract is generally preferred over isolated berberine. [Guide]",
+  },
+  "Acetyl-L-Carnitine (ALCAR)": {
+    "description":
+      "The acetylated form of L-Carnitine, superior for nervous/muscular system function; stimulates dopamine production to improve cognitive processing, mood, motor coordination, and stress resilience, transports fatty acids into mitochondria for energy, and provides strong neuroprotective mechanisms. [Guide]",
+    "caution":
+      "Must be strictly avoided by individuals with epilepsy. [Guide]",
+  },
+  "Chlorophyll": {
+    "description":
+      "A potent antioxidant that safeguards cells from free radicals and slows cellular aging; stimulates healthy blood production and supports the cardiovascular system, improves detoxification efficiency, bolsters immunity, and helps rebuild damaged gut flora. Its high magnesium content also soothes the nervous system. [Guide]",
   },
 };
 
