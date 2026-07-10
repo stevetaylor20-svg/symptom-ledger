@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { Leaf, AlertTriangle, Plus, Minus, RotateCcw, Ban, Stethoscope } from "lucide-react";
+import { Leaf, AlertTriangle, Plus, Minus, RotateCcw, Ban, Stethoscope, Download } from "lucide-react";
+import jsPDF from "jspdf";
 import {
   SYMPTOMS,
   REMEDIES,
@@ -130,6 +131,149 @@ function scoreRemedies(selectedSymptoms, selectedIllnesses) {
   return { included, excluded };
 }
 
+// Builds a paginated PDF from the current results and triggers a local
+// download. Runs entirely client-side — no server round-trip, no upload.
+function exportToPDF({ included, excluded, selectedSymptoms, selectedIllnesses }) {
+  const doc = new jsPDF({ unit: "pt", format: "letter" });
+  const marginX = 48;
+  const marginBottom = 56;
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const contentWidth = pageWidth - marginX * 2;
+  let y = 56;
+
+  function ensureSpace(height) {
+    if (y + height > pageHeight - marginBottom) {
+      doc.addPage();
+      y = 56;
+    }
+  }
+
+  function addText(text, opts = {}) {
+    const {
+      size = 10,
+      style = "normal",
+      color = [22, 33, 28],
+      lineGap = 13,
+      indent = 0,
+      before = 0,
+    } = opts;
+    y += before;
+    doc.setFont("helvetica", style);
+    doc.setFontSize(size);
+    doc.setTextColor(...color);
+    const lines = doc.splitTextToSize(text, contentWidth - indent);
+    lines.forEach((line) => {
+      ensureSpace(lineGap);
+      doc.text(line, marginX + indent, y);
+      y += lineGap;
+    });
+  }
+
+  function addRule() {
+    ensureSpace(14);
+    doc.setDrawColor(210);
+    doc.line(marginX, y, pageWidth - marginX, y);
+    y += 16;
+  }
+
+  // --- Header ---
+  addText("Tic-borne Illness Herbal Calculator — Report", { size: 18, style: "bold", lineGap: 22 });
+  addText(new Date().toLocaleString(), { size: 9, color: [140, 140, 140], lineGap: 14 });
+
+  // --- Selections summary ---
+  addText("Selected symptoms", { size: 11, style: "bold", lineGap: 14, before: 10 });
+  addText(selectedSymptoms.length ? selectedSymptoms.join(", ") : "None selected", {
+    size: 10,
+    lineGap: 13,
+  });
+
+  addText("Diagnosed illness", { size: 11, style: "bold", lineGap: 14, before: 8 });
+  if (selectedIllnesses.length) {
+    selectedIllnesses.forEach((illness) => {
+      addText(illness, { size: 10, style: "bold", lineGap: 13 });
+      addText(ILLNESS_INFO[illness]?.description || "", {
+        size: 9,
+        color: [110, 110, 110],
+        lineGap: 12,
+        indent: 12,
+      });
+    });
+  } else {
+    addText("None selected", { size: 10, lineGap: 13 });
+  }
+
+  addRule();
+
+  // --- Ranked outcomes ---
+  addText("Ranked outcomes", { size: 14, style: "bold", lineGap: 18 });
+
+  if (included.length === 0) {
+    addText("No remedies matched the current selection.", { size: 10, lineGap: 13 });
+  }
+
+  included.forEach(({ remedy, entries, total, explanation }, idx) => {
+    ensureSpace(28);
+    addText(`${idx + 1}. ${remedy}  (score ${total > 0 ? "+" + total : total})`, {
+      size: 12,
+      style: "bold",
+      lineGap: 15,
+      before: 8,
+    });
+
+    const info = REMEDY_INFO[remedy];
+    if (info?.description) {
+      addText(info.description, { size: 9.5, lineGap: 12, indent: 10 });
+    }
+    if (info?.caution) {
+      addText(`Caution: ${info.caution}`, {
+        size: 9,
+        color: [181, 101, 29],
+        lineGap: 12,
+        indent: 10,
+      });
+    }
+
+    entries.forEach((e) => {
+      const sign = e.weight > 0 ? `+${e.weight}` : `${e.weight}`;
+      const tag = e.kind === "illness" ? " (diagnosis)" : "";
+      const damp = e.dampened ? " (dampened)" : "";
+      addText(`• ${e.label}${tag}${damp}: ${sign}`, { size: 9, lineGap: 12, indent: 14 });
+    });
+
+    addText(explanation, { size: 9, style: "italic", color: [78, 102, 71], lineGap: 12, indent: 10 });
+  });
+
+  // --- Excluded ---
+  if (excluded.length > 0) {
+    addRule();
+    addText("Not recommended", { size: 14, style: "bold", color: [181, 101, 29], lineGap: 18 });
+    excluded.forEach(({ remedy, label, kind, reason }) => {
+      ensureSpace(24);
+      addText(remedy, { size: 12, style: "bold", lineGap: 14, before: 6 });
+      addText(`Excluded due to ${kind === "illness" ? "diagnosis" : "symptom"}: ${label}`, {
+        size: 9,
+        lineGap: 12,
+        indent: 10,
+      });
+      addText(reason, { size: 9, color: [110, 110, 110], lineGap: 12, indent: 10 });
+    });
+  }
+
+  // --- Footer disclaimer ---
+  addRule();
+  addText(
+    "This is for educational purposes ONLY. Please speak to your healthcare professional before making any changes.",
+    { size: 8, color: [140, 140, 140], lineGap: 11 }
+  );
+
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  const nameParts = [...selectedIllnesses, ...selectedSymptoms.slice(0, 3)].map(slug);
+  const fileName = `herbal-calculator-report${nameParts.length ? "-" + nameParts.join("-") : ""}.pdf`;
+
+  doc.save(fileName);
+}
+
 export default function App() {
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
   const [selectedIllnesses, setSelectedIllnesses] = useState([]);
@@ -156,7 +300,12 @@ export default function App() {
     setSelectedIllnesses([]);
   }
 
+  function handleExportPDF() {
+    exportToPDF({ included, excluded, selectedSymptoms, selectedIllnesses });
+  }
+
   const hasSelection = selectedSymptoms.length > 0 || selectedIllnesses.length > 0;
+  const hasResults = included.length > 0 || excluded.length > 0;
 
   return (
     <div style={{ background: PALETTE.ink, minHeight: "100vh", color: PALETTE.bone }}>
@@ -272,8 +421,19 @@ export default function App() {
         {selectedIllnesses.length === 0 && <div className="mb-14" />}
 
         {/* Ranked results */}
-        <div className="mono text-xs tracking-widest uppercase mb-4" style={{ color: PALETTE.moss }}>
-          Ranked outcomes
+        <div className="mb-4 flex items-center justify-between">
+          <span className="mono text-xs tracking-widest uppercase" style={{ color: PALETTE.moss }}>
+            Ranked outcomes
+          </span>
+          {hasResults && (
+            <button
+              onClick={handleExportPDF}
+              className="chip mono text-xs flex items-center gap-1 px-3 py-1.5 rounded border"
+              style={{ borderColor: PALETTE.moss, color: PALETTE.moss }}
+            >
+              <Download size={12} /> Export PDF
+            </button>
+          )}
         </div>
 
         {included.length === 0 && excluded.length === 0 && (
