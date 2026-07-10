@@ -173,11 +173,9 @@ export default function App() {
       <div className="max-w-3xl mx-auto px-6 py-16 body-font">
         {/* Header */}
         <div className="mb-12">
-          <div className="mono text-xs tracking-widest uppercase mb-3" style={{ color: PALETTE.moss }}>
-            Symptom Cross-Reference — Sample Build
-          </div>
+        
           <h1 className="display text-5xl mb-3" style={{ color: PALETTE.bone }}>
-            The Ledger
+            Tic-borne Illness Herbal Calculator
           </h1>
           <p className="text-sm leading-relaxed max-w-xl" style={{ color: PALETTE.mutedBone }}>
             Select the symptoms present, and optionally a confirmed diagnosis. Each remedy
