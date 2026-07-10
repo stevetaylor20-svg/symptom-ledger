@@ -31,7 +31,7 @@ export const SYMPTOMS = [
   "Fatigue",                   // Planner: "Chronic fatigue"
   "Insomnia",                  // Planner: "Sleep problems"
   "Headache",                  // Planner: "Headaches"
-  "Anxiety / Restlessness",    // Planner: "Depression/anxiety/hysteria" (anxiety half)
+  "Anxiety 		/ Restlessness",    // Planner: "Depression/anxiety/hysteria" (anxiety half)
   "Depression",                // Planner: "Depression/anxiety/hysteria" (depression half)
   "Numbness / Neuropathy",     // Planner: "Neuropathy" / "Muscle tremors, limb numbness"
   "Reduced libido",            // Planner: "Reduced libido"
@@ -39,6 +39,14 @@ export const SYMPTOMS = [
   "Edema / Swelling",          // Guide: "Edema, Swelling, and Sluggish Lymph"
   "Gastrointestinal problems", // Planner: "Gastrointestinal problems"
   "Herx reaction",             // Guide: "Herx reaction and detoxification" — die-off flare, not a baseline symptom but tracked so remedies with Herx-mitigation properties surface
+  // --- new: diagnostic/neurological groupings from the Guide's "Proposals
+  // for Selecting Herb Sets" that aren't captured by the general symptoms
+  // above — see matching entries in HERB_SETS for full herb sequencing ---
+  "Neurological", // Guide: "Neuroborelioza – Basic Herbs for Neurological Symptoms"
+  "Demylination",     // Guide: "Neuronal Demyelination"
+  "Bell's Palsy",               // Guide: "Bell's Palsy"
+  "Neurogenic pain",            // Guide: "Neurogenic Pain"
+  "Bacterial neurotoxin burden", // Guide: "Removal of Bacterial Neurotoxins"
 ];
 
 // -----------------------------------------------------------------------------
@@ -154,6 +162,7 @@ export const WEIGHT_MATRIX = {
     "Fatigue": 1,
     "Numbness / Neuropathy": 3, // [Guide] "highly effective against persistent muscle tremors... internal buzzing... electric currents"
     "Headache": -1, // [Babesia Protocol / Bartonella Protocol] "when you feel a headache, reduce the dose or discontinue this herb"
+    "Bacterial neurotoxin burden": 3, // [Guide] preferred choice if also treating Bartonella/Babesia or with active tremors/electric-shock sensations
   },
   "Cryptolepis": {
     "Night sweats": 2,
@@ -244,6 +253,9 @@ export const WEIGHT_MATRIX = {
     "Heart palpitations": 1,
     "Joint pain": 1,
     "Fatigue": 1,
+    "Brain fog": 1, // [Guide] Brain Fog baseline set
+    "Numbness / Neuropathy": 2, // [Guide] Muscle Twitching/Numbness baseline set
+    "Cardiac issues": 1, // [Guide] Cardiac Problems set — "stabilize heart rhythm and reduce rapid pulses"
   },
 
   // --- new remedies ---
@@ -252,6 +264,7 @@ export const WEIGHT_MATRIX = {
     "Edema / Swelling": 2, // [Guide] Edema/lymph set
     "Numbness / Neuropathy": 1,
     "Cardiac issues": 1,
+    "Neurogenic pain": 2, // [Guide] Buhner combination with Angelica sinensis
   },
   "Alchornea Cordifolia": {
     "Fatigue": 1,
@@ -263,6 +276,7 @@ export const WEIGHT_MATRIX = {
     "Brain fog": 1,
     "Fatigue": 1,
     "Anxiety / Restlessness": 1,
+    "Neurological": 1, // [Guide] "multi-directional support for the nervous system"
   },
   "Licorice": {
     "Fatigue": 1,
@@ -292,7 +306,7 @@ export const WEIGHT_MATRIX = {
   },
   "L-Arginine": {
     "Reduced libido": 2,
-    "Fatigue": 1,
+    "Fatigue": 2, // [Guide] Chronic Fatigue set — Buhner/Horowitz mitochondrial stack
     "Cardiac issues": -1, // added so the existing CONTRAINDICATIONS dampen rule below actually has a weight to act on
   },
   "Cordyceps": {
@@ -305,11 +319,11 @@ export const WEIGHT_MATRIX = {
     "Fatigue": 1,
   },
   "Red Root": {
-    "Edema / Swelling": 2,
+    "Edema / Swelling": 3, // [Guide] "Test both Cleavers and Red Root to see which works best for your body"
   },
   "Rhodiola Rosea": {
     "Fatigue": 2,
-    "Brain fog": 1,
+    "Brain fog": 2, // [Guide] "an excellent adaptogen for brain fog, fatigue, and severe stress"
     "Depression": 1,
     "Insomnia": -1, // [Guide] "do not take close to bedtime" — some experience jitters
   },
@@ -320,42 +334,45 @@ export const WEIGHT_MATRIX = {
     "Edema / Swelling": 3, // [Guide] core lymph/edema herb
   },
   "Gotu Kola": {
-    "Brain fog": 2,
+    "Brain fog": 3, // [Guide] "Excellent herbs to begin with include Gotu Kola or Ginkgo biloba"
     "Edema / Swelling": 1,
     "Depression": 1,
   },
   "Ginkgo Biloba": {
-    "Brain fog": 2,
-    "Numbness / Neuropathy": 2,
+    "Brain fog": 3, // [Guide] "Excellent herbs to begin with include Gotu Kola or Ginkgo biloba"
+    "Numbness / Neuropathy": 3, // [Guide] "the ideal choice" for numbness driven by peripheral circulatory restriction/cold extremities
     "Headache": 1,
     "Cardiac issues": 1,
   },
   "Teasel Root": {
-    "Joint pain": 2,
+    "Joint pain": 3, // [Guide] "begin by introducing Wild Teasel tincture" — Joint Problems baseline herb
   },
   "Motherwort": {
     "Anxiety / Restlessness": 2,
-    "Cardiac issues": 1,
+    "Cardiac issues": 2, // [Guide] Cardiac Problems set — best if palpitations are driven by nervous tension
     "Heart palpitations": 2,
-    "Depression": 1,
+    "Depression": 2, // [Guide] Depression set — recommended if migraines are present and deep calming is needed
     "Insomnia": 1,
   },
   "Stephania": {
-    "Cardiac issues": 1,
+    "Cardiac issues": 2, // [Guide] Cardiac Problems set — best if cardiac issues co-occur with neurological/eye symptoms
     "Numbness / Neuropathy": 1,
     "Eye problems": 2, // [Guide] "delivers the best results" for ocular Lyme/Bell's Palsy
     "Joint pain": 1,
+    "Bell's Palsy": 3, // [Guide] "delivers the best results, as explicitly recommended by Buhner"
   },
   "Gou Teng": {
     "Brain fog": 2, // [Guide] baseline neuroborreliosis herb alongside Tryptophan
     "Anxiety / Restlessness": 2,
     "Numbness / Neuropathy": 1,
     "Cardiac issues": -1, // [Guide] "lowers blood pressure — hypotensive tendencies should monitor or swap"
+    "Neurological": 3, // [Guide] baseline herb alongside Tryptophan
   },
   "Tryptophan": {
-    "Depression": 2,
+    "Depression": 3, // [Guide] primary depression herb, along with 5-HTP and SAMe
     "Insomnia": 2,
     "Anxiety / Restlessness": 1,
+    "Neurological": 3, // [Guide] baseline herb alongside Gou teng
   },
   "Valerian (Amantilla)": {
     "Insomnia": 3,
@@ -363,103 +380,119 @@ export const WEIGHT_MATRIX = {
   },
   "NAC": {
     "Brain fog": 1,
-    "Fatigue": 1,
+    "Fatigue": 2, // [Guide] Chronic Fatigue set — Rawls mitochondrial-protection stack
     "Herx reaction": 2, // [Guide] Herx/detox set
+    "Neurological": 1, // [Guide] baseline support alongside Gou teng/Tryptophan
+    "Bacterial neurotoxin burden": 1, // [Guide] neurotoxin removal set
   },
   "Melatonin": {
     "Insomnia": 3,
-    "Depression": 1,
+    "Depression": 2, // [Guide] Depression set — recommended if sleep is disrupted
   },
 
   // --- new: remedies pulled in via the Guide's "Proposals for Selecting
-  // Herb Sets" section [Guide] — see HERB_SETS below for the full named
-  // groupings these belong to. ---
+  // Herb Sets" section [Guide] ---
   "Glutathione": {
     "Brain fog": 1,
     "Herx reaction": 1,
-    "Fatigue": 1,
+    "Fatigue": 2, // [Guide] Chronic Fatigue set — Rawls mitochondrial-protection stack
+    "Neurological": 1, // [Guide] baseline support alongside Gou teng/Tryptophan
+    "Bacterial neurotoxin burden": 1, // [Guide] neurotoxin removal set
   },
   "Rg3 Nasal Spray": {
     "Brain fog": 2, // [Guide] neuro-inflammation / neurodegenerative decline
+    "Neurological": 2, // [Guide] fallback if Gou teng/Tryptophan baseline is insufficient
   },
   "Lion's Mane": {
-    "Brain fog": 2,
+    "Brain fog": 2, // [Guide] "resolves brain fog while repairing neurological structures" — dual-purpose with Chronic Fatigue/Brain Fog set
     "Gastrointestinal problems": 1,
+    "Demylination": 3, // [Guide] "Buhner strongly recommends Lion's Mane... to resolve cognitive defects and rebuild damaged neuronal networks" — milder/chronic maintenance; start with Chinese Senega, transition to Lion's Mane
   },
   "Chinese Senega": {
     "Brain fog": 1,
     "Depression": 1,
+    "Demylination": 3, // [Guide] preferred for acute, severe flare-ups
   },
   "BDNF Essentials": {
     "Brain fog": 1,
+    "Demylination": 2, // [Guide] fallback if Chinese Senega/Lion's Mane don't deliver noticeable improvement
   },
   "Kudzu": {
     "Headache": 2, // [Guide] "pressure" in the head / neurogenic pain
     "Numbness / Neuropathy": 1,
+    "Neurogenic pain": 3, // [Guide] first-line pairing with Greater Celandine
+    "Bell's Palsy": 2, // [Guide] "amplified by adding Kudzu" alongside Stephania
   },
   "Vitamin B12": {
-    "Numbness / Neuropathy": 1,
+    "Numbness / Neuropathy": 2, // [Guide] Muscle Twitching/Numbness baseline set, alongside Magnesium and Folic Acid
+    "Bell's Palsy": 1, // [Guide] "High-dose Vitamin B12 supplementation is also highly indicated"
   },
   "Greater Celandine": {
     "Headache": 2, // [Guide] neurogenic pain set
     "Numbness / Neuropathy": 1,
+    "Neurogenic pain": 3, // [Guide] first-line pairing with Kudzu
   },
   "PEA": {
     "Numbness / Neuropathy": 2, // [Guide] "one of the most effective natural options for reducing stubborn neuropathic pain"
-    "Insomnia": 1, // REM Repair pairing
+    "Insomnia": 2, // [Guide] Sleep Problems set, paired with REM Repair for GABA-driven calming
+    "Neurogenic pain": 2, // [Guide] fallback if Greater Celandine + Kudzu is insufficient
   },
   "CBD Oil": {
     "Numbness / Neuropathy": 2,
     "Headache": 2,
+    "Neurogenic pain": 2, // [Guide] "excellent results due to its analgesic properties"
   },
   "Angelica Sinensis": {
     "Headache": 1,
     "Herx reaction": 1, // [Guide] "help lower levels of Lyme neurotoxins"
     "Gastrointestinal problems": -1, // [Guide] "may occasionally cause mild diarrhea"
+    "Neurogenic pain": 2, // [Guide] Buhner combination with Salvia miltiorrhiza
+    "Bacterial neurotoxin burden": 3, // [Guide] one of three interchangeable options for neurotoxin removal
   },
   "Mucuna Pruriens": {
-    "Body tremors": 2, // [Guide] "natural L-dopa precursor" for tremors
+    "Body tremors": 2, // [Guide] "natural L-dopa precursor" for tremors, per Buhner
   },
   "SAMe": {
-    "Body tremors": 2,
-    "Depression": 2,
+    "Body tremors": 2, // [Guide] "highly effective for this ailment"
+    "Depression": 3, // [Guide] primary depression herb, along with Tryptophan and 5-HTP
     "Joint pain": 1,
     "Brain fog": 1,
   },
   "Burbur-Pinella": {
     "Herx reaction": 3, // [Guide] "exceptional ability to diminish intense Herx reactions"
     "Brain fog": 1,
+    "Bacterial neurotoxin burden": 3, // [Guide] "exceptionally effective choice for neural detoxification and should be considered a staple"
   },
   "5-HTP": {
-    "Depression": 2,
+    "Depression": 3, // [Guide] primary depression herb, along with Tryptophan and SAMe — never combine with Tryptophan
   },
   "Siberian Ginseng": {
-    "Fatigue": 2,
-    "Depression": 1,
+    "Fatigue": 3, // [Guide] "For many, a high-purity Siberian Ginseng tincture (2:1) provides excellent relief" — the Chronic Fatigue baseline
+    "Depression": 2, // [Guide] Depression set — add if depression is accompanied by severe exhaustion
     "Brain fog": 1,
   },
   "ATP Fuel": {
-    "Fatigue": 2,
+    "Fatigue": 3, // [Guide] "using either ATP Fuel or ATP 360 alone provides excellent relief and stands as the most effective solution for chronic fatigue"
     "Brain fog": 1,
   },
   "ATP 360": {
-    "Fatigue": 2,
+    "Fatigue": 3, // [Guide] "using either ATP Fuel or ATP 360 alone provides excellent relief and stands as the most effective solution for chronic fatigue"
   },
   "NT Factor Energy": {
-    "Fatigue": 2,
+    "Fatigue": 2, // [Guide] Chronic Fatigue set — combine with ATP Fuel/ATP 360 for the manufacturer's full mitochondrial-restoration trio
   },
   "D-Ribose": {
-    "Fatigue": 2,
+    "Fatigue": 2, // [Guide] Buhner/Horowitz mitochondrial stack
   },
   "NADH": {
-    "Fatigue": 1,
+    "Fatigue": 2, // [Guide] Buhner/Horowitz mitochondrial stack
   },
   "L-Carnitine": {
-    "Fatigue": 1,
-    "Cardiac issues": 1,
+    "Fatigue": 2, // [Guide] Buhner/Horowitz mitochondrial stack
+    "Cardiac issues": 2, // [Guide] Cardiac Problems set — cardiac ischemia rapidly depletes tissue levels
   },
   "Alpha Lipoic Acid": {
-    "Fatigue": 1,
+    "Fatigue": 2, // [Guide] Buhner/Horowitz/Rawls mitochondrial stacks
   },
   "Adrenal Cortex": {
     "Fatigue": 2, // [Guide] adrenal burnout set
@@ -468,14 +501,15 @@ export const WEIGHT_MATRIX = {
     "Fatigue": 2, // [Guide] vegan adrenal-support alternative to Adrenal Cortex
   },
   "Taurine": {
-    "Cardiac issues": 1,
+    "Cardiac issues": 2, // [Guide] Cardiac Problems set — most abundant amino acid in the heart, mandatory for proper cardiac muscle function
     "Body tremors": 1,
+    "Brain fog": 1, // [Guide] Brain Fog baseline set
   },
   "Collagen": {
-    "Joint pain": 1,
+    "Joint pain": 2, // [Guide] Joint Problems baseline set
   },
   "Selenium": {
-    "Joint pain": 1,
+    "Joint pain": 2, // [Guide] Joint Problems baseline set
   },
   "Glucosamine & Chondroitin": {
     "Joint pain": 2,
@@ -490,18 +524,18 @@ export const WEIGHT_MATRIX = {
     "Joint pain": 2, // [Guide] fallback if Teasel Root proves insufficient
   },
   "Folic Acid": {
-    "Numbness / Neuropathy": 1,
+    "Numbness / Neuropathy": 2, // [Guide] Muscle Twitching/Numbness baseline set, alongside Magnesium and Vitamin B12
     "Depression": 1,
   },
   "REM Repair": {
-    "Insomnia": 2, // [Guide] GABA + Melissa + Valerian + B6 blend (Nutrined)
+    "Insomnia": 3, // [Guide] GABA + Melissa + Valerian + B6 blend (Nutrined) — one of the Guide's three Sleep Problems paths
   },
   "Maca": {
-    "Reduced libido": 2,
+    "Reduced libido": 3, // [Guide] "We recommend starting with a combination of Maca root and Pine Pollen"
     "Fatigue": 1,
   },
   "Pine Pollen": {
-    "Reduced libido": 2,
+    "Reduced libido": 3, // [Guide] "We recommend starting with a combination of Maca root and Pine Pollen"
     "Fatigue": 1,
   },
   "Zinc": {
@@ -1157,226 +1191,6 @@ export const ILLNESS_CONTRAINDICATIONS = {
 };
 
 // -----------------------------------------------------------------------------
-// HERB_SETS — the Guide's "Proposals for Selecting Herb Sets" section,
-// reproduced as named, orderable groupings rather than folded into the
-// generic WEIGHT_MATRIX scoring. Some of these are symptom clusters already
-// represented as SYMPTOMS entries (e.g. Tremors, Joint Problems); others
-// (Neuroborelioza, Neuronal Demyelination, Bell's Palsy, Neurogenic Pain,
-// Removal of Bacterial Neurotoxins) are diagnostic/neurological groupings
-// the Guide treats as their own decision point and are not otherwise
-// captured by the SYMPTOMS list.
-//
-// Each entry:
-//   tier: "baseline"  -> Buhner's / the Guide's core starting herb(s)
-//         "primary"   -> named first-choice option(s) for the set
-//         "secondary" -> fallback/alternative if primary is insufficient
-//         "support"   -> companion supplement that amplifies the above
-// -----------------------------------------------------------------------------
-export const HERB_SETS = [
-  {
-    "id": "neuroborreliosis",
-    "title": "Neuroborelioza — Basic Herbs for Neurological Symptoms",
-    "notes":
-      "Keep Gou teng and Tryptophan in the protocol for the full duration of therapy unless clearly unsuitable — neurological damage takes time to heal and won't reverse in 1-2 months. [Guide]",
-    "remedies": [
-      { "name": "Gou Teng", "tier": "baseline" },
-      { "name": "Tryptophan", "tier": "baseline" },
-      { "name": "NAC", "tier": "support" },
-      { "name": "Glutathione", "tier": "support" },
-      { "name": "Rg3 Nasal Spray", "tier": "secondary", "note": "Excellent for neuro-inflammation and neurodegenerative changes if the baseline is insufficient." },
-      { "name": "Ashwagandha", "tier": "secondary", "note": "Multi-directional nervous-system support." },
-    ],
-  },
-  {
-    "id": "neuronal-demyelination",
-    "title": "Neuronal Demyelination",
-    "notes":
-      "Chinese Senega is preferred for acute, severe flare-ups; Lion's Mane for milder or chronic maintenance — start with Chinese Senega and transition to Lion's Mane later. If neither delivers noticeable improvement, add BDNF Essentials. [Guide]",
-    "remedies": [
-      { "name": "Chinese Senega", "tier": "primary" },
-      { "name": "Lion's Mane", "tier": "primary" },
-      { "name": "BDNF Essentials", "tier": "secondary" },
-    ],
-  },
-  {
-    "id": "bells-palsy",
-    "title": "Bell's Palsy",
-    "notes": "Explicitly recommended combination per Buhner. [Guide]",
-    "remedies": [
-      { "name": "Stephania", "tier": "primary" },
-      { "name": "Kudzu", "tier": "primary", "note": "Amplifies Stephania's action." },
-      { "name": "Vitamin B12", "tier": "support", "note": "High-dose supplementation is highly indicated." },
-    ],
-  },
-  {
-    "id": "neurogenic-pain",
-    "title": "Neurogenic Pain",
-    "notes":
-      "Buhner's combination of Angelica sinensis and Salvia miltiorrhiza tinctures is also highly effective as an alternative path. [Guide]",
-    "remedies": [
-      { "name": "Greater Celandine", "tier": "primary" },
-      { "name": "Kudzu", "tier": "primary" },
-      { "name": "PEA", "tier": "secondary", "note": "Try if the Greater Celandine + Kudzu combination is insufficient." },
-      { "name": "CBD Oil", "tier": "secondary", "note": "Use a high concentration — low percentages may not relieve chronic neuro-inflammation, severe pain, or migraines." },
-      { "name": "Angelica Sinensis", "tier": "secondary" },
-      { "name": "Salvia Miltiorrhiza", "tier": "secondary" },
-    ],
-  },
-  {
-    "id": "tremors",
-    "title": "Tremors",
-    "notes": "Daily Magnesium supplementation is mandatory alongside any of these. [Guide]",
-    "remedies": [
-      { "name": "Sida Acuta", "tier": "primary" },
-      { "name": "Mucuna Pruriens", "tier": "secondary", "note": "Natural L-dopa precursor, per Buhner." },
-      { "name": "SAMe", "tier": "secondary", "note": "Highly effective for this ailment." },
-      { "name": "Magnesium", "tier": "support" },
-    ],
-  },
-  {
-    "id": "removal-of-bacterial-neurotoxins",
-    "title": "Removal of Bacterial Neurotoxins",
-    "notes":
-      "Introduce only one of Burbur-Pinella, Sida acuta tincture, or Angelica sinensis tincture at a time — not all at once. Choose Sida acuta if concurrently treating Bartonella/Babesia or experiencing active tremors/electric-shock sensations; Burbur-Pinella is an exceptionally effective staple choice for neural detox. [Guide]",
-    "remedies": [
-      { "name": "Burbur-Pinella", "tier": "primary" },
-      { "name": "Sida Acuta", "tier": "primary" },
-      { "name": "Angelica Sinensis", "tier": "primary" },
-      { "name": "Glutathione", "tier": "support" },
-      { "name": "NAC", "tier": "support" },
-    ],
-  },
-  {
-    "id": "depression",
-    "title": "Depression",
-    "notes":
-      "If depression is deep or severe, seek professional medical guidance; psychological support and meditation are also highly beneficial. Never combine Tryptophan and 5-HTP — they regulate the same pathway. [Guide]",
-    "remedies": [
-      { "name": "Tryptophan", "tier": "primary" },
-      { "name": "5-HTP", "tier": "primary", "note": "Never combine with Tryptophan." },
-      { "name": "SAMe", "tier": "primary" },
-      { "name": "Siberian Ginseng", "tier": "secondary", "note": "Add if depression is accompanied by severe exhaustion." },
-      { "name": "Motherwort", "tier": "secondary", "note": "Add if migraines are present and deep calming is needed." },
-      { "name": "Melatonin", "tier": "secondary", "note": "Add if sleep is disrupted." },
-    ],
-  },
-  {
-    "id": "chronic-fatigue",
-    "title": "Chronic Fatigue",
-    "notes":
-      "Start with a high-purity Siberian Ginseng tincture (2:1). If insufficient, identify whether the cause is mitochondrial dysfunction, adrenal burnout, or both, and pick a stack below. Either ATP Fuel or ATP 360 alone is highly effective and, in practice, the most effective single option. [Guide]",
-    "remedies": [
-      { "name": "Siberian Ginseng", "tier": "baseline" },
-      { "name": "ATP Fuel", "tier": "primary", "note": "Mitochondrial dysfunction — Researched Nutritionals; effective alone." },
-      { "name": "ATP 360", "tier": "primary", "note": "Mitochondrial dysfunction — Researched Nutritionals; effective alone." },
-      { "name": "NT Factor Energy", "tier": "secondary", "note": "Combine with ATP Fuel/ATP 360 for the manufacturer's full mitochondrial-restoration trio." },
-      { "name": "D-Ribose", "tier": "secondary", "note": "Buhner/Horowitz mitochondrial stack." },
-      { "name": "NADH", "tier": "secondary", "note": "Buhner/Horowitz mitochondrial stack." },
-      { "name": "L-Arginine", "tier": "secondary", "note": "Buhner/Horowitz mitochondrial stack." },
-      { "name": "L-Carnitine", "tier": "secondary", "note": "Buhner/Horowitz mitochondrial stack." },
-      { "name": "Alpha Lipoic Acid", "tier": "secondary", "note": "Buhner/Horowitz/Rawls mitochondrial stack." },
-      { "name": "Glutathione", "tier": "secondary", "note": "Rawls mitochondrial-protection set." },
-      { "name": "NAC", "tier": "secondary", "note": "Rawls mitochondrial-protection set." },
-      { "name": "Adrenal Cortex", "tier": "secondary", "note": "Adrenal burnout — bovine glandular extract." },
-      { "name": "Energy Multi-Plex", "tier": "secondary", "note": "Adrenal burnout — vegan non-glandular alternative to Adrenal Cortex." },
-    ],
-  },
-  {
-    "id": "brain-fog",
-    "title": "Brain Fog, Problems with Concentration and Memory",
-    "notes":
-      "ATP Fuel addresses both brain fog and chronic fatigue; Lion's Mane resolves brain fog while repairing neurological structures; Rhodiola rosea is an excellent adaptogen for brain fog, fatigue, and severe stress. [Guide]",
-    "remedies": [
-      { "name": "Gotu Kola", "tier": "primary" },
-      { "name": "Ginkgo Biloba", "tier": "primary" },
-      { "name": "Taurine", "tier": "support" },
-      { "name": "Magnesium", "tier": "support" },
-      { "name": "ATP Fuel", "tier": "secondary" },
-      { "name": "Lion's Mane", "tier": "secondary" },
-      { "name": "Rhodiola Rosea", "tier": "secondary" },
-    ],
-  },
-  {
-    "id": "joint-problems",
-    "title": "Joint Problems",
-    "notes":
-      "If Teasel Root proves insufficient, replace it with either Boswellia serrata or Devil's Claw while keeping the rest of the companion supplements. [Guide]",
-    "remedies": [
-      { "name": "Teasel Root", "tier": "baseline" },
-      { "name": "Collagen", "tier": "baseline" },
-      { "name": "Selenium", "tier": "baseline" },
-      { "name": "Glucosamine & Chondroitin", "tier": "baseline" },
-      { "name": "MSM", "tier": "baseline" },
-      { "name": "Curcumin", "tier": "baseline" },
-      { "name": "Boswellia Serrata", "tier": "secondary", "note": "Replacement for Teasel Root if insufficient." },
-      { "name": "Devil's Claw", "tier": "secondary", "note": "Replacement for Teasel Root if insufficient." },
-    ],
-  },
-  {
-    "id": "muscle-twitching-numbness",
-    "title": "Muscle Twitching and Numbness",
-    "notes":
-      "Choose Sida acuta if twitching stems from neurological pathways with electric-shock sensations; choose Ginkgo biloba if numbness is driven by peripheral circulatory restriction (cold extremities). [Guide]",
-    "remedies": [
-      { "name": "Magnesium", "tier": "baseline" },
-      { "name": "Vitamin B12", "tier": "baseline" },
-      { "name": "Folic Acid", "tier": "baseline" },
-      { "name": "Sida Acuta", "tier": "primary", "note": "For electric-shock/neurological-pathway twitching." },
-      { "name": "Ginkgo Biloba", "tier": "primary", "note": "For peripheral circulatory restriction / cold extremities." },
-    ],
-  },
-  {
-    "id": "cardiac-problems",
-    "title": "Cardiac Problems",
-    "notes":
-      "Hawthorn must be avoided by anyone with a tendency toward low blood pressure. Japanese Knotweed's resveratrol content means the core Borrelia baseline already offers cardiovascular protection. [Guide]",
-    "remedies": [
-      { "name": "Hawthorn", "tier": "baseline", "note": "Avoid with low blood pressure." },
-      { "name": "Stephania", "tier": "secondary", "note": "Best if cardiac issues co-occur with neurological and/or eye symptoms." },
-      { "name": "Motherwort", "tier": "secondary", "note": "Best if palpitations are driven by nervous tension." },
-      { "name": "Japanese Knotweed", "tier": "support" },
-      { "name": "Magnesium", "tier": "support" },
-      { "name": "L-Carnitine", "tier": "support" },
-      { "name": "Taurine", "tier": "support" },
-    ],
-  },
-  {
-    "id": "sleep-problems",
-    "title": "Sleep Problems",
-    "notes":
-      "Three distinct paths: (1) Melatonin for circadian disruption, (2) PEA/REM Repair for GABA-driven calming, (3) Amantilla ± Ashwagandha for mild difficulty. Relaxation techniques or meditation before bed, and acupuncture as a fallback, are also recommended. [Guide]",
-    "remedies": [
-      { "name": "Melatonin", "tier": "primary", "note": "Resolves circadian-rhythm-driven insomnia." },
-      { "name": "PEA", "tier": "primary" },
-      { "name": "REM Repair", "tier": "primary" },
-      { "name": "Valerian (Amantilla)", "tier": "primary" },
-      { "name": "Ashwagandha", "tier": "secondary", "note": "Addresses mild sleep difficulty by calming the nervous system." },
-    ],
-  },
-  {
-    "id": "libido-problems",
-    "title": "Libido Problems",
-    "notes": "Complement Maca + Pine Pollen with targeted amino acid and mineral support. [Guide]",
-    "remedies": [
-      { "name": "Maca", "tier": "baseline" },
-      { "name": "Pine Pollen", "tier": "baseline" },
-      { "name": "L-Arginine", "tier": "support" },
-      { "name": "Zinc", "tier": "support" },
-    ],
-  },
-  {
-    "id": "edema-swelling-lymph",
-    "title": "Edema, Swelling, and Sluggish Lymph",
-    "notes": "Test both Cleavers and Red Root to see which works best for your body. [Guide]",
-    "remedies": [
-      { "name": "Cleavers", "tier": "primary" },
-      { "name": "Red Root", "tier": "primary" },
-      { "name": "Stinging Nettle", "tier": "support", "note": "Daily infusion as a safe diuretic to remove stagnant water weight." },
-    ],
-  },
-];
-
-// -----------------------------------------------------------------------------
 // GENERAL_CAUTIONS — blanket rules stated identically across every protocol
 // document, not tied to a single remedy or illness. Surface these once in the
 // UI (e.g. a persistent notice) rather than trying to key them per remedy.
@@ -1403,3 +1217,4 @@ export const GENERAL_CAUTIONS = [
       "A temporary worsening of symptoms (a Herxheimer reaction) can occur during bacterial die-off. Activated charcoal or zeolite can help; if using either, space them at least 30 minutes after and 4 hours before other protocol herbs/medications. [Lyme (Borrelia) Protocol]",
   },
 ];
+
