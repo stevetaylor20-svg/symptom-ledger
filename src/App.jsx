@@ -336,7 +336,7 @@ export default function App() {
         .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
       `}</style>
 
-      <div className="max-w-5xl mx-auto px-6 py-16 body-font">
+      <div className="max-w-4xl mx-auto px-6 py-16 body-font">
         {/* Header */}
         <div className="mb-12">
         
