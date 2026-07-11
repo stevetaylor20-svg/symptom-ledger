@@ -369,6 +369,8 @@ export default function App() {
             tallies a running score from every symptom and diagnosis you pick, and some
             selections carry hard rules of their own — excluding a remedy outright, or
             dampening its score, regardless of what the plain weights say.
+
+            Any tincture ratios will be Buhner based on alcoholic formats.
           </p>
         </div>
 
