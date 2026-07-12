@@ -6,6 +6,8 @@
 //   "Lymeherbs — Lyme Disease Protocol" (step-by-step Borrelia)  [Lyme (Borrelia) Protocol]
 //   "Lymeherbs — Babesia Protocol" (step-by-step)                [Babesia Protocol]
 //   "Lymeherbs — Bartonella Protocol" (step-by-step)              [Bartonella Protocol]
+//   "Napiers CLAID Herbal Protocol" (patient letter — herb actions
+//    for the Rotational Mix One/Two, Support Mix and Sleep Mix)          [Napiers]
 // Sources cited inline with the bracketed tags above where a specific
 // claim/dose is pulled from that document. Values not directly stated in the
 // source PDFs (e.g. weights for symptom pairs the guide only implies) are
@@ -169,6 +171,9 @@ export const REMEDIES = [
   "Barberry",
   "Acetyl-L-Carnitine (ALCAR)",
   "Chlorophyll",
+  // --- new: herbs added from the Napiers CLAID Herbal Protocol letter [Napiers] ---
+  "Black Walnut",
+  "Reishi",
 ];
 
 // -----------------------------------------------------------------------------
@@ -224,6 +229,10 @@ export const WEIGHT_MATRIX = {
     "Fatigue": 2,
     "Urinary tract issues": 3, // [Guide] "highly effective for recurrent urinary tract infections or systemic mucosal inflammation"
     "Respiratory issues": 2, // [Guide] "also used for lung infections"
+    "Sore throat": 2, // [Napiers] "respiratory passages, sore throat, difficulty swallowing"
+    "Heart palpitations": 1, // [Napiers] "TCM/Eclectic use in cardiac spasm, palpitations"
+    "Cardiac issues": 1, // [Napiers] "cardiac spasm, palpitations"
+    "Candida / Fungal overgrowth": 1, // [Napiers] "broad-spectrum use including babesia, mycoplasma (SHB), cytomegalovirus (CMV), candida and herpes"
   },
   "Artemisia": {
     "Heart palpitations": -1,
@@ -302,6 +311,14 @@ export const WEIGHT_MATRIX = {
   "Alchornea Cordifolia": {
     "Fatigue": 1,
     "Numbness / Neuropathy": 1, // protects erythrocytes, relevant to Babesia/Bartonella
+    "Headache": 2, // [Napiers] "pain relief for headache, backache, whole body pain"
+    "Joint pain": 2, // [Napiers] "backache, whole body pain" mapped to the joint/musculoskeletal-pain category
+    "Depression": 2, // [Napiers] "Improves low mood and anxiety"
+    "Anxiety / Restlessness": 2, // [Napiers] "Improves low mood and anxiety"
+    "Fever": 2, // [Napiers] "Reduces fevers"
+    "Anemia": 2, // [Napiers] "Helpful in anaemia (including sickle cell), improves iron uptake"
+    "Respiratory issues": 1, // [Napiers] "supports the respiratory and genito-urinary systems"
+    "Urinary tract issues": 1, // [Napiers] "supports the respiratory and genito-urinary systems"
   },
   "Ashwagandha": {
     "Insomnia": 2, // [Planner] Sleep problems list
@@ -317,6 +334,9 @@ export const WEIGHT_MATRIX = {
   "Milk Thistle": {
     "Fatigue": 1,
     "Gastrointestinal problems": 1, // liver-support, indirectly digestive
+    "Headache": 2, // [Napiers] "Lyme headaches to front of head"
+    "Herx reaction": 2, // [Napiers] "Liver, kidney and spleen protections, detox"
+    "Respiratory issues": 1, // [Napiers] "Anti-inflammatory action in tissue, lungs (used to treat respiratory allergy)"
   },
   "Schisandra": {
     "Fatigue": 2,
@@ -351,6 +371,11 @@ export const WEIGHT_MATRIX = {
   },
   "Isatis": {
     "Fatigue": 1,
+    "Headache": 2, // [Napiers] "Reduces encephalitis swelling, CNS inflammation, meningitis, headaches, eye complications"
+    "Neurological": 3, // [Napiers] "Reduces encephalitis swelling, CNS inflammation, meningitis"
+    "Eye problems": 1, // [Napiers] "eye complications"
+    "Sore throat": 1, // [Napiers] "Mycoplasma onset: maculopapular rashes, sore throat, laryngitis, tonsillitis"
+    "Respiratory issues": 1, // [Napiers] "lung anti-inflammatory reduces airway swelling"
   },
   "Red Root": {
     "Edema / Swelling": 3, // [Guide] "Test both Cleavers and Red Root to see which works best for your body"
@@ -626,6 +651,8 @@ export const WEIGHT_MATRIX = {
   },
   "Barberry": {
     "Candida / Fungal overgrowth": 2, // [Guide] "demonstrates strong action against Candida yeasts"
+    "Gastrointestinal problems": 2, // [Napiers] "Bitter tonic and cholagogue, stimulates bile flow and liver function. Used for gallstones, gallbladder problems... Mildly laxative"
+    "Cardiac issues": 1, // [Napiers] "Regulates heart, increases blood platelets"
   },
   "Acetyl-L-Carnitine (ALCAR)": {
     "Motor coordination / balance": 3, // [Guide] "improve cognitive processing, mood, motor coordination, and stress resilience"
@@ -635,6 +662,19 @@ export const WEIGHT_MATRIX = {
   "Chlorophyll": {
     "Circulatory issues": 1, // [Guide] "stimulates healthy blood production and supports the cardiovascular system"
     "Gastrointestinal problems": 1, // [Guide] "helps rebuild damaged gut flora to improve digestion"
+  },
+
+  // --- new: remedies from the Napiers CLAID Herbal Protocol letter [Napiers] ---
+  "Black Walnut": {
+    "Respiratory issues": 2, // [Napiers] "helpful with sinus issues"
+    "Candida / Fungal overgrowth": 2, // [Napiers] "Also active against molds, parasites" — molds mapped to the fungal-overgrowth category
+  },
+  "Reishi": {
+    "Fatigue": 3, // [Napiers] "Adaptogen, increases stress resilience, rejuvenative, used in chronic fatigue, fibromyalgia and post-viral syndromes"
+    "Cardiac issues": 1, // [Napiers] "balances stress hormones, heart/brain function"
+    "Brain fog": 1, // [Napiers] "heart/brain function"
+    "Circulatory issues": 2, // [Napiers] "Increases circulatory/venous oxygen"
+    "Gastrointestinal problems": 1, // [Napiers] "Nourishing, strengthening, [gut] antimicrobial tonic"
   },
 };
 
@@ -1234,6 +1274,16 @@ export const REMEDY_INFO = {
     "description":
       "A potent antioxidant that safeguards cells from free radicals and slows cellular aging; stimulates healthy blood production and supports the cardiovascular system, improves detoxification efficiency, bolsters immunity, and helps rebuild damaged gut flora. Its high magnesium content also soothes the nervous system. [Guide]",
   },
+
+  // --- new: remedies from the Napiers CLAID Herbal Protocol letter [Napiers] ---
+  "Black Walnut": {
+    "description":
+      "A core Borrelia antibiotic in vitro. Also active against molds and parasites, and helpful with sinus issues; supportive in underactive thyroid. [Napiers]",
+  },
+  "Reishi": {
+    "description":
+      "A medicinal mushroom (Ganoderma lucidum) and adaptogen from the Support Mix. Immunomodulating (TH1/TH2 balance), antihistamine, strongly anti-inflammatory, and balances stress hormones and heart/brain function. Increases stress resilience and circulatory/venous oxygen; used for chronic fatigue, fibromyalgia and post-viral syndromes. A nourishing gut-antimicrobial tonic that also inhibits viral replication and binding, including against HSV. [Napiers]",
+  },
 };
 
 // -----------------------------------------------------------------------------
@@ -1375,6 +1425,7 @@ export const ILLNESS_REMEDY_WEIGHTS = {
     "Ashwagandha": 1, // neuroborreliosis support list
     "Sida Acuta": 1, // neuroborreliosis support list
     "Houttuynia": 1, // biofilm disruption list
+    "Black Walnut": 3, // [Napiers] "Core Borrelia antibiotic in vitro"
   },
   "Babesia": {
     "Alchornea Cordifolia": 3,
