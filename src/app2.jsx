@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Leaf, AlertTriangle, Plus, Minus, RotateCcw, Ban, Stethoscope, Download, Droplet } from "lucide-react";
 import jsPDF from "jspdf";
 import {
@@ -295,6 +295,27 @@ export default function App() {
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
   const [selectedIllnesses, setSelectedIllnesses] = useState([]);
 
+  // Tell whatever page is iframing this app how tall the content currently
+  // is, so the parent page can resize the iframe to fit instead of using a
+  // fixed height with an internal scrollbar. Fires on mount and whenever
+  // the rendered content's height changes (symptom/illness selection,
+  // expanding remedy cards, etc.) — no need to call this manually anywhere
+  // else in the app.
+  useEffect(() => {
+    const postHeight = () => {
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ type: "lyme-app-resize", height }, "*");
+    };
+    postHeight();
+    const observer = new ResizeObserver(postHeight);
+    observer.observe(document.body);
+    window.addEventListener("load", postHeight);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("load", postHeight);
+    };
+  }, []);
+
   const { included, excluded } = useMemo(
     () => scoreRemedies(selectedSymptoms, selectedIllnesses),
     [selectedSymptoms, selectedIllnesses]
@@ -348,6 +369,8 @@ export default function App() {
             tallies a running score from every symptom and diagnosis you pick, and some
             selections carry hard rules of their own — excluding a remedy outright, or
             dampening its score, regardless of what the plain weights say.
+
+            Any tincture ratios will be Buhner based on alcoholic formats.
           </p>
         </div>
 
