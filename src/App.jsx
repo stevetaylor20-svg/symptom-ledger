@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { Leaf, AlertTriangle, Plus, Minus, RotateCcw, Ban, Stethoscope, Download } from "lucide-react";
+import React, { useMemo, useState, useEffect } from "react";
+import { Leaf, AlertTriangle, Plus, Minus, RotateCcw, Ban, Stethoscope, Download, Droplet } from "lucide-react";
 import jsPDF from "jspdf";
 import {
   SYMPTOMS,
@@ -233,6 +233,23 @@ function exportToPDF({ included, excluded, selectedSymptoms, selectedIllnesses }
         indent: 10,
       });
     }
+    if (info?.tinctureDosage) {
+      if (typeof info.tinctureDosage === "string") {
+        addText(`Tincture dosage: ${info.tinctureDosage}`, {
+          size: 9,
+          color: [78, 102, 71],
+          lineGap: 12,
+          indent: 10,
+        });
+      } else {
+        addText("Tincture dosage:", { size: 9, style: "bold", color: [78, 102, 71], lineGap: 12, indent: 10 });
+        ["1:5", "1:3", "1:2"].forEach((ratio) => {
+          if (info.tinctureDosage[ratio]) {
+            addText(`${ratio} — ${info.tinctureDosage[ratio]}`, { size: 9, lineGap: 12, indent: 16 });
+          }
+        });
+      }
+    }
 
     entries.forEach((e) => {
       const sign = e.weight > 0 ? `+${e.weight}` : `${e.weight}`;
@@ -278,6 +295,27 @@ export default function App() {
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
   const [selectedIllnesses, setSelectedIllnesses] = useState([]);
 
+  // Tell whatever page is iframing this app how tall the content currently
+  // is, so the parent page can resize the iframe to fit instead of using a
+  // fixed height with an internal scrollbar. Fires on mount and whenever
+  // the rendered content's height changes (symptom/illness selection,
+  // expanding remedy cards, etc.) — no need to call this manually anywhere
+  // else in the app.
+  useEffect(() => {
+    const postHeight = () => {
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ type: "lyme-app-resize", height }, "*");
+    };
+    postHeight();
+    const observer = new ResizeObserver(postHeight);
+    observer.observe(document.body);
+    window.addEventListener("load", postHeight);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("load", postHeight);
+    };
+  }, []);
+
   const { included, excluded } = useMemo(
     () => scoreRemedies(selectedSymptoms, selectedIllnesses),
     [selectedSymptoms, selectedIllnesses]
@@ -319,18 +357,20 @@ export default function App() {
         .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
       `}</style>
 
-      <div className="max-w-3xl mx-auto px-6 py-16 body-font">
+      <div className="max-w-4xl mx-auto px-6 py-16 body-font">
         {/* Header */}
         <div className="mb-12">
         
           <h1 className="display text-5xl mb-3" style={{ color: PALETTE.bone }}>
-            Tic-borne Illness Herbal Calculator
+            Tick-borne Illness Herbal Calculator
           </h1>
           <p className="text-sm leading-relaxed max-w-xl" style={{ color: PALETTE.mutedBone }}>
             Select the symptoms present, and optionally a confirmed diagnosis. Each remedy
             tallies a running score from every symptom and diagnosis you pick, and some
             selections carry hard rules of their own — excluding a remedy outright, or
             dampening its score, regardless of what the plain weights say.
+
+            Any tincture ratios will be Buhner based on alcoholic formats.
           </p>
         </div>
 
@@ -462,7 +502,7 @@ export default function App() {
                   </div>
                   <div className="flex items-center gap-2">
                     <a
-                      href={`https://lymetool.online/my-custom-protocol/?add=${encodeURIComponent(remedy)}&source=${encodeURIComponent("Herbal Calculator")}`}
+                      href={`https://lymetool.online/my-protocol/?add=${encodeURIComponent(remedy)}&source=${encodeURIComponent("Herbal Calculator")}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mono text-xs px-2 py-1 rounded border flex items-center gap-1"
@@ -496,6 +536,37 @@ export default function App() {
                   >
                     <AlertTriangle size={13} style={{ color: PALETTE.rust, flexShrink: 0, marginTop: 2 }} />
                     <span style={{ color: PALETTE.mossDark }}>{REMEDY_INFO[remedy].caution}</span>
+                  </div>
+                )}
+
+                {REMEDY_INFO[remedy]?.tinctureDosage && (
+                  <div
+                    className="rounded p-3 mb-3 text-xs leading-relaxed"
+                    style={{ background: "rgba(124,148,115,0.08)", border: "1px solid rgba(124,148,115,0.3)" }}
+                  >
+                    <div
+                      className="mono flex items-center gap-2 mb-2"
+                      style={{ color: PALETTE.mossDark, fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase" }}
+                    >
+                      <Droplet size={12} style={{ color: PALETTE.mossDark }} />
+                      Tincture dosage
+                    </div>
+                    {typeof REMEDY_INFO[remedy].tinctureDosage === "string" ? (
+                      <p style={{ color: PALETTE.ink }}>{REMEDY_INFO[remedy].tinctureDosage}</p>
+                    ) : (
+                      <div className="grid grid-cols-3 gap-3">
+                        {["1:5", "1:3", "1:2"].map((ratio) =>
+                          REMEDY_INFO[remedy].tinctureDosage[ratio] ? (
+                            <div key={ratio}>
+                              <div className="mono" style={{ color: PALETTE.bark, fontSize: 10 }}>
+                                {ratio}
+                              </div>
+                              <div style={{ color: PALETTE.ink }}>{REMEDY_INFO[remedy].tinctureDosage[ratio]}</div>
+                            </div>
+                          ) : null
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -573,6 +644,7 @@ export default function App() {
 
 const PALETTE = {
   ink: "#16211C",
+  bg: "#B9FB9C",
   bone: "#F1ECDF",
   mutedBone: "#B9C2B6",
   moss: "#7C9473",
