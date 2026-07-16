@@ -1109,7 +1109,7 @@ export const REMEDY_INFO = {
     "description":
       "A direct precursor to serotonin; stabilizes mood swings and counters depression, especially with chronic tryptophan deficiency. Pairs well with green tea extract. [Guide]",
     "caution":
-      "Never use together with Tryptophan — both regulate the same pathway; if one doesn't work, swap to the other rather than combining. [Guide]",
+      "Never use together with Tryptophan — both regulate the same pathway; if one doesn't work, swap to the other rather than combining. [Guide] Do not combine with prescription antidepressants — SSRIs, SNRIs (e.g. duloxetine), MAOIs — or with mirtazapine. All raise serotonin by different routes and stacking them risks serotonin syndrome. Researched Nutritionals give the same warning on Soothe & Relaxx, which contains 5-HTP. [RN 2022 Catalog] Note: this scoring model has no medication axis, so the calculator cannot down-rank 5-HTP for someone on an antidepressant — it can only warn. Read this before acting on the score.",
   },
   "Siberian Ginseng": {
     "description":
