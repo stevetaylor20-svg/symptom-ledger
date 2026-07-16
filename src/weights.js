@@ -79,13 +79,14 @@ export const REMEDIES = [
   "Japanese Knotweed",
   "Cat's Claw",
   "Bidens Pilosa",
-  "Artemisia",
+  "Artemisia annua",
+  "Artemisinin",
   "Allicin",
   "Lumbrokinase",
   "Andrographis",
   "Chinese Skullcap",
   "Houttuynia",
-  "Cinnamon Clove & Oregano",
+  "Cinnamon, Clove & Oregano",
   "Cumanda",
   "Curcumin",
   "Magnesium",
@@ -94,7 +95,7 @@ export const REMEDIES = [
   "Alchornea Cordifolia",
   "Ashwagandha",
   "Licorice",
-  "Milk Thistle",
+  "Milk Thistle Extract",
   "Schisandra",
   "Korean Ginseng",
   "EGCG",
@@ -109,7 +110,7 @@ export const REMEDIES = [
   "Cleavers",
   "Gotu Kola",
   "Ginkgo Biloba",
-  "Teasel Root",
+  "Teasel",
   "Motherwort",
   "Stephania",
   "Gou Teng",
@@ -124,15 +125,15 @@ export const REMEDIES = [
   "Lion's Mane",
   "Chinese Senega",
   "BDNF Essentials",
-  "Kudzu",
+  "Kudzu Root",
   "Vitamin B12",
   "Greater Celandine",
   "PEA",
   "CBD Oil",
-  "Angelica Sinensis",
+  "Angelica sinensis",
   "Mucuna Pruriens",
   "SAMe",
-  "Burbur-Pinella",
+  "Burbur Pinella",
   "5-HTP",
   "Siberian Ginseng",
   "ATP Fuel",
@@ -234,7 +235,16 @@ export const WEIGHT_MATRIX = {
     "Cardiac issues": 1, // [Napiers] "cardiac spasm, palpitations"
     "Candida / Fungal overgrowth": 1, // [Napiers] "broad-spectrum use including babesia, mycoplasma (SHB), cytomegalovirus (CMV), candida and herpes"
   },
-  "Artemisia": {
+  "Artemisia annua": {
+    "Heart palpitations": -1,
+    "Night sweats": 2,
+    "Brain fog": 1,
+    "Fatigue": -1,
+    "Insomnia": -1,
+    "Headache": 1,
+    "Cardiac issues": -1, // added so the existing CONTRAINDICATIONS dampen rule below actually has a weight to act on
+  },
+  "Artemisinin": {
     "Heart palpitations": -1,
     "Night sweats": 2,
     "Brain fog": 1,
@@ -273,7 +283,7 @@ export const WEIGHT_MATRIX = {
     "Fatigue": 1,
     "Headache": 1,
   },
-  "Cinnamon Clove & Oregano": {
+  "Cinnamon, Clove & Oregano": {
     "Fatigue": 1,
     "Joint pain": 1,
     "Night sweats": 1,
@@ -331,7 +341,7 @@ export const WEIGHT_MATRIX = {
   "Licorice": {
     "Fatigue": 1,
   },
-  "Milk Thistle": {
+  "Milk Thistle Extract": {
     "Fatigue": 1,
     "Gastrointestinal problems": 1, // liver-support, indirectly digestive
     "Headache": 2, // [Napiers] "Lyme headaches to front of head"
@@ -406,7 +416,7 @@ export const WEIGHT_MATRIX = {
     "Cardiac issues": 1,
     "Circulatory issues": 3, // [Guide] "enhances structural blood vessel function... improving blood flow to the brain and skeletal muscles"
   },
-  "Teasel Root": {
+  "Teasel": {
     "Joint pain": 3, // [Guide] "begin by introducing Wild Teasel tincture" — Joint Problems baseline herb
   },
   "Motherwort": {
@@ -481,7 +491,7 @@ export const WEIGHT_MATRIX = {
     "Brain fog": 1,
     "Demyelination": 2, // [Guide] fallback if Chinese Senega/Lion's Mane don't deliver noticeable improvement
   },
-  "Kudzu": {
+  "Kudzu Root": {
     "Headache": 2, // [Guide] "pressure" in the head / neurogenic pain
     "Numbness / Neuropathy": 1,
     "Neurogenic pain": 3, // [Guide] first-line pairing with Greater Celandine
@@ -507,7 +517,7 @@ export const WEIGHT_MATRIX = {
     "Headache": 2,
     "Neurogenic pain": 2, // [Guide] "excellent results due to its analgesic properties"
   },
-  "Angelica Sinensis": {
+  "Angelica sinensis": {
     "Headache": 1,
     "Herx reaction": 1, // [Guide] "help lower levels of Lyme neurotoxins"
     "Gastrointestinal problems": -1, // [Guide] "may occasionally cause mild diarrhea"
@@ -524,7 +534,7 @@ export const WEIGHT_MATRIX = {
     "Joint pain": 1,
     "Brain fog": 1,
   },
-  "Burbur-Pinella": {
+  "Burbur Pinella": {
     "Herx reaction": 3, // [Guide] "exceptional ability to diminish intense Herx reactions"
     "Brain fog": 1,
     "Bacterial neurotoxin burden": 3, // [Guide] "exceptionally effective choice for neural detoxification and should be considered a staple"
@@ -732,11 +742,21 @@ export const REMEDY_INFO = {
       "1:2": "3 ml x 3 daily", // [Planner]
     },
   },
-  "Artemisia": {
+  "Artemisia annua": {
     "description":
-      "Best known for antiparasitic use, also used more broadly for general systemic support, though carries more cautions than some alternatives.",
+      "Whole-herb sweet wormwood. The whole herb carries the full spectrum of the plant's active compounds working together, giving a wider spectrum of antimalarial action than isolated artemisinin, and a lower resistance risk with continued use. [Guide]",
     "caution":
-      "Isolated artemisinin carries a resistance risk with continuous use — periodic breaks are required. [Guide]",
+      "Do not stack with Artemisinin — they are the same active principle, one whole and one isolated. Pick a form, don't take both. [Guide]",
+    "tinctureDosage":
+      "Buhner's dosing tables give figures for isolated artemisinin capsules rather than the whole dried herb, so no distinct whole-herb ratio is documented. Follow label guidance and start low. [Guide]",
+  },
+  "Artemisinin": {
+    "description":
+      "The isolated anti-malarial constituent extracted from Artemisia annua. Applicable against Babesia, but used in isolation rather than as the whole herb. [Guide]",
+    "caution":
+      "Carries a resistance risk with continuous use — periodic breaks are required. Ross cycles it 3 days on (escalating to 5 pills 3x daily) then 11 days off, because the gut develops an enzyme that breaks it down with longer continuous use. Often works less well against Babesia strains from U.S. East Coast tick bites (Ross's clinical observation). Do not stack with Artemisia annua. [Guide]",
+    "tinctureDosage":
+      "100–200mg, 3 times daily (Buhner). Not a ratio tincture — dosed as capsules. [Guide]",
   },
   "Allicin": {
     "description":
@@ -777,7 +797,7 @@ export const REMEDY_INFO = {
       "1:2": "0.5 - 1 ml x 3-6 daily", // [Planner]
     },
   },
-  "Cinnamon Clove & Oregano": {
+  "Cinnamon, Clove & Oregano": {
     "description":
       "A blend of antimicrobial botanicals commonly used together, often associated with biofilm-disruption strategies.",
   },
@@ -837,7 +857,7 @@ export const REMEDY_INFO = {
       "1:2": "0.5 - 1 ml x 3 daily", // [Planner]
     },
   },
-  "Milk Thistle": {
+  "Milk Thistle Extract": {
     "description":
       "Substantially optimizes liver health, shielding hepatic tissue from chemical, environmental and viral toxins; supports detox capacity. [Guide]",
   },
@@ -948,7 +968,7 @@ export const REMEDY_INFO = {
     "caution":
       "Circulatory disease patients should consult a physician before use. [Guide]",
   },
-  "Teasel Root": {
+  "Teasel": {
     "description":
       "Exerts bacteriostatic action against Borrelia and acts as an anti-inflammatory/anti-rheumatic agent; accelerates connective tissue repair. [Guide]",
   },
@@ -1033,7 +1053,7 @@ export const REMEDY_INFO = {
     "description":
       "A Researched Nutritionals formula that stimulates Brain-Derived Neurotrophic Factor (BDNF), used as a fallback if Lion's Mane/Chinese Senega don't deliver noticeable improvement for demyelination. [Guide]",
   },
-  "Kudzu": {
+  "Kudzu Root": {
     "description":
       "Features the compound puerarin; anti-arrhythmic, circulatory-supporting, and anti-diabetic. Calms neuro-inflammation and mitigates a feeling of \"pressure\" in the brain or neurogenic pain. Used alongside Stephania for Bell's Palsy. [Guide]",
     "tinctureDosage": {
@@ -1062,7 +1082,7 @@ export const REMEDY_INFO = {
     "caution":
       "Contraindicated in coronary artery disease and severe blood coagulation deficits. [Guide]",
   },
-  "Angelica Sinensis": {
+  "Angelica sinensis": {
     "description":
       "Contains coumarin compounds that dilate blood vessels and improve blood flow; used to help lower Lyme neurotoxin levels (e.g. quinolinic acid) and, combined with Salvia miltiorrhiza, for neurogenic pain. [Guide]",
     "caution":
@@ -1081,7 +1101,7 @@ export const REMEDY_INFO = {
     "description":
       "The primary methyl-group donor in cellular one-carbon metabolism; enhances mood, alleviates chronic joint pain, and is highly effective for tremors. Bypasses transmethylation blocks linked to depression. [Guide]",
   },
-  "Burbur-Pinella": {
+  "Burbur Pinella": {
     "description":
       "A Nutramedix combination of Burbur (Desmodium molliculum) and Pinella (Pimpinella anisum); supports deep detox of the brain and CNS, flushing toxic metabolites while cleansing the liver, kidneys, and lymph. Exceptionally effective for diminishing intense Herx reactions. [Guide]",
   },
@@ -1308,12 +1328,20 @@ export const CONTRAINDICATIONS = {
         "Adjust dose to individual tolerance — reduce the dose or discontinue this herb if a headache occurs. [Babesia Protocol, Bartonella Protocol]",
     },
   },
-  "Artemisia": {
+  "Artemisia annua": {
     "Cardiac issues": {
       "mode": "dampen",
       "factor": 0.25,
       "note":
-        "Cardiac issues heavily dampens Artemisia's score rather than excluding it outright, since this caution is treated as relative rather than absolute in this sample data.",
+        "Cardiac issues heavily dampens Artemisia annua's score rather than excluding it outright, since this caution is treated as relative rather than absolute in this sample data.",
+    },
+  },
+  "Artemisinin": {
+    "Cardiac issues": {
+      "mode": "dampen",
+      "factor": 0.25,
+      "note":
+        "Cardiac issues heavily dampens Artemisinin's score rather than excluding it outright, since this caution is treated as relative rather than absolute in this sample data.",
     },
   },
   "Licorice": {
@@ -1432,10 +1460,11 @@ export const ILLNESS_REMEDY_WEIGHTS = {
     "Cryptolepis": 3,
     "Sida Acuta": 3,
     "Ashwagandha": 2,
-    "Artemisia": 2, // Artemisinin
+    "Artemisia annua": 2, // whole herb
+    "Artemisinin": 2, // isolated constituent
     "Bidens Pilosa": 2,
     "Licorice": 2,
-    "Milk Thistle": 2,
+    "Milk Thistle Extract": 2,
     "Salvia Miltiorrhiza": 2,
     "Schisandra": 2,
     "Korean Ginseng": 2,
@@ -1445,7 +1474,7 @@ export const ILLNESS_REMEDY_WEIGHTS = {
     "Hawthorn": 3,
     "Houttuynia": 3,
     "L-Arginine": 3,
-    "Milk Thistle": 3,
+    "Milk Thistle Extract": 3,
     "Japanese Knotweed": 3,
     "Sida Acuta": 3,
     "Alchornea Cordifolia": 2,

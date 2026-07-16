@@ -502,7 +502,7 @@ export default function App() {
                   </div>
                   <div className="flex items-center gap-2">
                     <a
-                      href={`https://lymetool.online/my-protocol/?add=${encodeURIComponent(remedy)}&source=${encodeURIComponent("Herbal Calculator")}`}
+                      href={`https://lymetool.online/my-custom-protocol/?add=${encodeURIComponent(remedy)}&source=${encodeURIComponent("Herbal Calculator")}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mono text-xs px-2 py-1 rounded border flex items-center gap-1"
